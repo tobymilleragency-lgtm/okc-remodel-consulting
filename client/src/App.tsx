@@ -8,6 +8,296 @@ type City = { name: string; slug: string; note: string; nearby: string };
 
 const email = "brothersremodelingokc@gmail.com";
 
+type Language = "en" | "es";
+const LANGUAGE_STORAGE_KEY = "brothers-remodeling-okc-language";
+const LanguageContext = React.createContext<{ language: Language; setLanguage: (language: Language) => void }>({ language: "en", setLanguage: () => {} });
+function useLanguage() { return React.useContext(LanguageContext); }
+
+const serviceNameEs: Record<string, string> = {
+  "Kitchen Remodeling": "Remodelación de cocinas",
+  "Bathroom Remodeling": "Remodelación de baños",
+  "Interior Renovations": "Renovaciones interiores",
+  "Flooring Installation": "Instalación de pisos",
+  "Exterior Remodeling": "Remodelación exterior",
+  "Additions, Garages & Conversions": "Ampliaciones, garajes y conversiones",
+  "Outdoor Living Spaces": "Espacios exteriores",
+  "Repair & Maintenance": "Reparaciones y mantenimiento",
+};
+
+const textEs: Record<string, string> = {
+  "Brothers Remodeling OKC": "Brothers Remodeling OKC",
+  "Brothers Remodeling OKC LLC": "Brothers Remodeling OKC LLC",
+  "Home": "Inicio",
+  "Services": "Servicios",
+  "Process": "Proceso",
+  "About": "Acerca de",
+  "Gallery": "Galería",
+  "Service Area": "Área de servicio",
+  "Contact": "Contacto",
+  "Request Quote": "Solicitar cotización",
+  "English": "English",
+  "Español": "Español",
+  "Full-service remodeling • English / Español": "Remodelación completa • English / Español",
+  "Remodel your OKC home without the runaround.": "Remodele su casa en OKC sin vueltas ni confusión.",
+  "Brothers Remodeling OKC LLC helps homeowners update kitchens, bathrooms, floors, walls, exterior spaces, garages, and full homes across Oklahoma City and nearby areas.": "Brothers Remodeling OKC LLC ayuda a propietarios a actualizar cocinas, baños, pisos, muros, áreas exteriores, garajes y casas completas en Oklahoma City y comunidades cercanas.",
+  "Request Remodeling Quote": "Solicitar cotización de remodelación",
+  "Email Project Photos": "Enviar fotos del proyecto",
+  "Full": "Servicio",
+  "service": "completo",
+  "Bi": "Dos",
+  "lingual": "idiomas",
+  "OKC": "OKC",
+  "focused": "enfocado",
+  "Kitchens • Bathrooms • Floors • Paint • Exterior • Repairs": "Cocinas • Baños • Pisos • Pintura • Exterior • Reparaciones",
+  "English and Spanish communication available": "Comunicación disponible en inglés y español",
+  "Kitchens, baths, floors, paint, exterior work, garages, and repairs": "Cocinas, baños, pisos, pintura, exterior, garajes y reparaciones",
+  "Focused on Oklahoma City and nearby communities": "Enfocados en Oklahoma City y comunidades cercanas",
+  "Direct remodeling communication": "Comunicación directa para su remodelación",
+  "Remodeling services": "Servicios de remodelación",
+  "One remodeling company for almost every part of the home.": "Una compañía de remodelación para casi cada parte de la casa.",
+  "Kitchen Remodeling": "Remodelación de cocinas",
+  "Cabinets, counters, backsplash, lighting, islands, flooring, layout improvements, and cleaner daily function.": "Gabinetes, cubiertas, backsplash, iluminación, islas, pisos, mejoras de distribución y una función diaria más cómoda.",
+  "Bathroom Remodeling": "Remodelación de baños",
+  "Showers, tubs, tile, vanities, fixtures, waterproofing details, ventilation, and better storage.": "Regaderas, tinas, azulejo, vanities, accesorios, impermeabilización, ventilación y mejor almacenamiento.",
+  "Interior Renovations": "Renovaciones interiores",
+  "Drywall, texture, trim, paint, doors, baseboards, accent walls, room updates, and layout changes.": "Drywall, textura, molduras, pintura, puertas, zoclos, muros de acento, mejoras de habitaciones y cambios de distribución.",
+  "Flooring Installation": "Instalación de pisos",
+  "LVP, tile, laminate, transitions, subfloor prep, and finish carpentry that ties the remodel together.": "LVP, loseta, laminado, transiciones, preparación de subpiso y carpintería de acabado para integrar la remodelación.",
+  "Exterior Remodeling": "Remodelación exterior",
+  "Siding, facade updates, decks, fences, exterior paint, curb appeal, windows, doors, and practical repairs.": "Siding, mejoras de fachada, decks, cercas, pintura exterior, curb appeal, ventanas, puertas y reparaciones prácticas.",
+  "Additions, Garages & Conversions": "Ampliaciones, garajes y conversiones",
+  "Added living areas, garage remodels, storage upgrades, offices, commercial spaces, and better use of square footage.": "Nuevas áreas habitables, remodelación de garajes, almacenamiento, oficinas, espacios comerciales y mejor uso de los pies cuadrados.",
+  "Outdoor Living Spaces": "Espacios exteriores",
+  "Patios, exterior gathering areas, repairs, fencing, and improvements that make the outside more usable.": "Patios, áreas exteriores de reunión, reparaciones, cercas y mejoras que hacen el exterior más útil.",
+  "Repair & Maintenance": "Reparaciones y mantenimiento",
+  "Punch-list repairs, patching, painting, maintenance, and smaller details that keep a property sharp.": "Reparaciones pendientes, parches, pintura, mantenimiento y detalles pequeños que mantienen la propiedad en buen estado.",
+  "Project details": "Detalles del proyecto",
+  "Room, city, timing, and the real problem": "Área, ciudad, tiempo y el problema real",
+  "Photos reviewed": "Fotos revisadas",
+  "Access, finishes, damage, and hidden-condition clues": "Acceso, acabados, daños y señales de condiciones ocultas",
+  "Quote path": "Ruta de cotización",
+  "Call, visit, scope notes, and next-step fit": "Llamada, visita, notas de alcance y siguiente paso adecuado",
+  "Build plan": "Plan de trabajo",
+  "Schedule, materials, cleanup, and communication": "Horario, materiales, limpieza y comunicación",
+  "Live project path": "Ruta activa del proyecto",
+  "Kitchen / bath requests": "Solicitudes de cocina / baño",
+  "Photos and access notes": "Fotos y notas de acceso",
+  "Materials and finish level": "Materiales y nivel de acabado",
+  "Scheduling and next steps": "Agenda y siguientes pasos",
+  "Scope clarity": "Alcance claro",
+  "Photo review": "Revisión de fotos",
+  "Quote fit": "Ajuste de cotización",
+  "Project flow": "Flujo del proyecto",
+  "A cleaner path from first message to remodel plan.": "Un camino más claro desde el primer mensaje hasta el plan de remodelación.",
+  "Project details received": "Detalles recibidos",
+  "Details reviewed": "Detalles revisados",
+  "Visit or quote step confirmed": "Visita o paso de cotización confirmado",
+  "Remodel work scheduled": "Trabajo de remodelación agendado",
+  "Interactive checklist": "Lista interactiva",
+  "Before you request a quote, collect the details that prevent back-and-forth.": "Antes de pedir una cotización, reúna los detalles que evitan vueltas innecesarias.",
+  "Room or area is clearly described": "La habitación o área está claramente descrita",
+  "Photos are ready to send": "Las fotos están listas para enviar",
+  "Timeline expectations are known": "Ya se conocen las expectativas de tiempo",
+  "Access, pets, parking, or special notes are listed": "Se anotaron acceso, mascotas, estacionamiento o notas especiales",
+  "Budget range or finish level can be discussed": "Se puede hablar del rango de presupuesto o nivel de acabado",
+  "Before / after comparison": "Comparación antes / después",
+  "From scattered remodel ideas to a clear project conversation.": "De ideas dispersas a una conversación clara sobre el proyecto.",
+  "Before": "Antes",
+  "Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.": "Ideas sueltas, fotos faltantes, prioridades poco claras, tiempo indefinido y dificultad para explicar la remodelación.",
+  "After": "Después",
+  "Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.": "Área, fotos, tiempos, ciudad y tipo de proyecto reunidos para que Brothers Remodeling OKC responda con un siguiente paso útil.",
+  "Ready for a remodel?": "¿Listo para remodelar?",
+  "Request quote": "Solicitar cotización",
+  "Fast quote request": "Solicitud rápida de cotización",
+  "Tell Brothers Remodeling OKC who to call and what needs remodeled.": "Dígale a Brothers Remodeling OKC a quién llamar y qué necesita remodelarse.",
+  "Add your name, phone number, project type, and clear instructions. If photos are ready, email them after submitting.": "Agregue su nombre, teléfono, tipo de proyecto e instrucciones claras. Si tiene fotos listas, envíelas por email después de enviar el formulario.",
+  "Request a remodeling quote": "Solicitar una cotización de remodelación",
+  "Fill in the basics below so Brothers Remodeling OKC knows exactly who to call, where the project is, and what needs remodeled. English or Spanish is welcome.": "Complete lo básico para que Brothers Remodeling OKC sepa a quién llamar, dónde está el proyecto y qué necesita remodelarse. Inglés o español es bienvenido.",
+  "Request sent.": "Solicitud enviada.",
+  "Email option available.": "Opción por email disponible.",
+  "Your name / Nombre": "Su nombre / Nombre",
+  "Phone number / Teléfono": "Teléfono / Phone number",
+  "Email, if you want replies there": "Email, si prefiere respuestas ahí",
+  "City or part of OKC": "Ciudad o zona de OKC",
+  "Project type": "Tipo de proyecto",
+  "Choose the closest project type": "Elija el tipo de proyecto más cercano",
+  "Kitchen": "Cocina",
+  "Bathroom": "Baño",
+  "Flooring": "Pisos",
+  "Addition": "Ampliación",
+  "Deck": "Deck",
+  "Whole Home": "Casa completa",
+  "Exterior": "Exterior",
+  "Other": "Otro",
+  "Project instructions": "Instrucciones del proyecto",
+  "Best time to call": "Mejor horario para llamar",
+  "Sending...": "Enviando...",
+  "Send My Project": "Enviar mi proyecto",
+  "Full-service bilingual remodeling in Oklahoma City and nearby communities. Kitchens, bathrooms, flooring, interiors, exterior work, garages, additions, outdoor living, repairs, and maintenance.": "Remodelación bilingüe de servicio completo en Oklahoma City y comunidades cercanas. Cocinas, baños, pisos, interiores, exterior, garajes, ampliaciones, espacios exteriores, reparaciones y mantenimiento.",
+  "Main pages": "Páginas principales",
+  "Service areas": "Áreas de servicio",
+  "HTML Sitemap": "Mapa del sitio HTML",
+  "XML Sitemap: /sitemap.xml": "Mapa del sitio XML: /sitemap.xml",
+  "Oklahoma City, Oklahoma": "Oklahoma City, Oklahoma",
+  "Built for real remodeling quote conversations.": "Hecho para conversaciones reales de cotización de remodelación.",
+  "No fake reviews, no online payments, no auth.": "Sin reseñas falsas, sin pagos en línea, sin inicio de sesión.",
+  "Kitchen, bathroom, interior, exterior, flooring, paint, and repair remodeling in OKC.": "Remodelación de cocinas, baños, interiores, exteriores, pisos, pintura y reparaciones en OKC.",
+  "Brothers Remodeling OKC gives homeowners one place to start for the most common remodeling needs around the home.": "Brothers Remodeling OKC ofrece a propietarios un solo lugar para empezar con las necesidades más comunes de remodelación del hogar.",
+  "Remodeling service": "Servicio de remodelación",
+  "Detailed service guidance": "Guía detallada del servicio",
+  "Common": "Detalles comunes de",
+  "Existing condition and repair needs": "Condición existente y necesidades de reparación",
+  "Material and finish expectations": "Expectativas de materiales y acabado",
+  "Schedule, access, and cleanup notes": "Notas de horario, acceso y limpieza",
+  "Related drywall, paint, trim, floor, door, or exterior tie-ins": "Detalles relacionados de drywall, pintura, molduras, piso, puertas o exterior",
+  "Photos, measurements, and address-area details for the quote conversation": "Fotos, medidas y zona de la dirección para la conversación de cotización",
+  "A clear remodeling process before work begins.": "Un proceso claro de remodelación antes de comenzar el trabajo.",
+  "The goal is direct communication, realistic scope conversations, and a next step homeowners understand.": "La meta es comunicación directa, conversaciones realistas sobre el alcance y un siguiente paso que el propietario entienda.",
+  "How the project path works": "Cómo funciona la ruta del proyecto",
+  "Send details": "Enviar detalles",
+  "Share the room, city, photos, timeline, and what needs to change.": "Comparta la habitación, ciudad, fotos, tiempos y lo que necesita cambiar.",
+  "Check scope": "Revisar alcance",
+  "Brothers Remodeling OKC reviews the work type, access, materials, and schedule.": "Brothers Remodeling OKC revisa el tipo de trabajo, acceso, materiales y agenda.",
+  "Confirm next step": "Confirmar siguiente paso",
+  "If the job is a good match, the team follows up with the visit, quote step, or project conversation.": "Si el trabajo es adecuado, el equipo da seguimiento con visita, cotización o conversación del proyecto.",
+  "Build with updates": "Trabajar con actualizaciones",
+  "Work proceeds with clear communication in English or Spanish.": "El trabajo avanza con comunicación clara en inglés o español.",
+  "Brothers Remodeling OKC is a local remodeling contractor for real home upgrades.": "Brothers Remodeling OKC es un contratista local de remodelación para mejoras reales del hogar.",
+  "The company focuses on practical, good-looking remodel work across kitchens, bathrooms, flooring, interiors, exterior improvements, garages, repairs, and whole-home updates.": "La compañía se enfoca en remodelaciones prácticas y bien terminadas para cocinas, baños, pisos, interiores, exteriores, garajes, reparaciones y casas completas.",
+  "Built for homeowners who want direct remodeling help.": "Hecho para propietarios que quieren ayuda directa con su remodelación.",
+  "Brothers Remodeling OKC presents services, service area, process, and quote options plainly, without invented credentials or exaggerated claims.": "Brothers Remodeling OKC presenta servicios, área de servicio, proceso y opciones de cotización con claridad, sin credenciales inventadas ni promesas exageradas.",
+  "Bilingual communication": "Comunicación bilingüe",
+  "English and Spanish project conversations are welcome.": "Las conversaciones del proyecto en inglés o español son bienvenidas.",
+  "Wide service range": "Amplio rango de servicios",
+  "Multiple rooms and repair scopes can be discussed in one place.": "Varias habitaciones y alcances de reparación se pueden hablar en un solo lugar.",
+  "OKC area focus": "Enfoque en el área de OKC",
+  "Oklahoma City and nearby communities are the primary service area.": "Oklahoma City y comunidades cercanas son el área principal de servicio.",
+  "Project inspiration for kitchens, baths, interiors, and exterior updates.": "Inspiración de proyectos para cocinas, baños, interiores y mejoras exteriores.",
+  "Use these remodeling categories to show Brothers Remodeling OKC what kind of finish, room, or repair you want quoted.": "Use estas categorías para mostrar a Brothers Remodeling OKC qué tipo de acabado, habitación o reparación desea cotizar.",
+  "Exterior and curb appeal work": "Trabajo exterior y presentación de fachada",
+  "Interior remodel finish work": "Acabados de remodelación interior",
+  "Remodeling categories": "Categorías de remodelación",
+  "Remodeling help centered on Oklahoma City.": "Ayuda de remodelación centrada en Oklahoma City.",
+  "Brothers Remodeling OKC focuses on the core Oklahoma City metro first: kitchens, bathrooms, flooring, paint, exterior repairs, garages, additions, and whole-home updates. Nearby communities are reviewed by project fit, access, timing, and work type.": "Brothers Remodeling OKC se enfoca primero en el área central del metro de Oklahoma City: cocinas, baños, pisos, pintura, reparaciones exteriores, garajes, ampliaciones y mejoras de casa completa. Las comunidades cercanas se revisan según el proyecto, acceso, tiempos y tipo de trabajo.",
+  "Primary OKC-area communities": "Comunidades principales del área de OKC",
+  "Use the city links below to describe where the home is and what kind of remodeling help you need.": "Use los enlaces de ciudad para describir dónde está la casa y qué tipo de ayuda de remodelación necesita.",
+  "Core metro first. Nearby communities reviewed by project type, access, schedule, and fit.": "Primero el metro principal. Comunidades cercanas se revisan por tipo de proyecto, acceso, agenda y ajuste.",
+  "Local remodeling service area": "Área local de servicio de remodelación",
+  "Kitchen, bathroom, interior, exterior, and repair remodeling near Oklahoma City.": "Remodelación de cocinas, baños, interiores, exteriores y reparaciones cerca de Oklahoma City.",
+  "Brothers Remodeling OKC serves Oklahoma City and nearby surrounding communities with bilingual remodeling communication and a practical quote path.": "Brothers Remodeling OKC sirve a Oklahoma City y comunidades cercanas con comunicación bilingüe y una ruta práctica de cotización.",
+  "What service-area fit means.": "Qué significa que el área de servicio sea adecuada.",
+  "Location": "Ubicación",
+  "Start with the city or nearest OKC-area community so the team can review drive time and access.": "Empiece con la ciudad o comunidad cercana a OKC para revisar tiempo de traslado y acceso.",
+  "Scope": "Alcance",
+  "Details": "Detalles",
+  "Communication": "Comunicación",
+  "Sitemap": "Mapa del sitio",
+  "All Brothers Remodeling OKC website pages.": "Todas las páginas del sitio de Brothers Remodeling OKC.",
+  "Use this page to find every main route, service page, service-area page, contact option, and sitemap file.": "Use esta página para encontrar rutas principales, páginas de servicio, áreas de servicio, contacto y sitemap.",
+  "Contact Brothers Remodeling OKC": "Contactar a Brothers Remodeling OKC",
+  "Tell us what you want remodeled.": "Díganos qué quiere remodelar.",
+  "Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them.": "Envíe detalles del proyecto en inglés o español. Incluya la habitación, zona de la dirección, tiempo y fotos si las tiene.",
+  "Request a quote conversation.": "Solicitar una conversación de cotización.",
+  "Use the form or email project photos to start a real quote conversation.": "Use el formulario o envíe fotos por email para iniciar una conversación real de cotización.",
+  "Page not found": "Página no encontrada",
+  "The page you requested is not available.": "La página solicitada no está disponible.",
+  "Back home": "Volver al inicio",
+  "Please add your name, phone, project type, and a short project description before sending.": "Agregue su nombre, teléfono, tipo de proyecto y una breve descripción antes de enviar.",
+  "Your project details were sent. Brothers Remodeling OKC will review the request and follow up with the next step.": "Sus detalles fueron enviados. Brothers Remodeling OKC revisará la solicitud y dará seguimiento con el siguiente paso.",
+  "The form could not be sent right now. Please email the project details and photos to brothersremodelingokc@gmail.com.": "El formulario no se pudo enviar en este momento. Envíe los detalles y fotos por email a brothersremodelingokc@gmail.com.",
+};
+
+const placeholderEs: Record<string, string> = {
+  "Full name": "Nombre completo",
+  "Best phone number to call or text": "Mejor teléfono para llamar o enviar texto",
+  "Email address optional": "Email opcional",
+  "Oklahoma City, Edmond, Yukon...": "Oklahoma City, Edmond, Yukon...",
+  "Tell us what needs remodeled, repaired, replaced, or updated. Include room, rough timeline, access notes, pets, parking, budget range, and whether you have photos ready.": "Díganos qué necesita remodelarse, repararse, reemplazarse o actualizarse. Incluya habitación, tiempo aproximado, acceso, mascotas, estacionamiento, rango de presupuesto y si tiene fotos listas.",
+  "Morning, afternoon, evening, or specific days": "Mañana, tarde, noche o días específicos",
+};
+
+function translateTextValue(value: string): string {
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (!compact) return value;
+  let translated = textEs[compact];
+  if (!translated) {
+    const serviceMatch = compact.match(/^Read the (.+) service page$/);
+    if (serviceMatch) translated = `Leer la página de ${serviceNameEs[serviceMatch[1]] || serviceMatch[1]}`;
+  }
+  if (!translated) {
+    const progress = compact.match(/^Checklist progress: (\d+) of (\d+) ready\.$/);
+    if (progress) translated = `Progreso de la lista: ${progress[1]} de ${progress[2]} listo(s).`;
+  }
+  if (!translated) {
+    const serviceTitle = Object.entries(serviceNameEs).find(([, es]) => compact.includes(es))?.[0];
+    const commonMatch = compact.match(/^Common (.+) details$/);
+    if (commonMatch) translated = `Detalles comunes de ${serviceNameEs[commonMatch[1]] || commonMatch[1]}`;
+    const knowMatch = compact.match(/^What homeowners should know before starting (.+)\.$/);
+    if (knowMatch) translated = `Lo que los propietarios deben saber antes de comenzar ${serviceNameEs[serviceTitle || knowMatch[1]] || knowMatch[1]}.`;
+  }
+  if (!translated) return value;
+  return value.replace(compact, translated);
+}
+
+function applyNativeTranslations(language: Language) {
+  if (typeof document === "undefined") return;
+  document.documentElement.lang = language;
+  document.title = language === "es" ? "Brothers Remodeling OKC | Remodelación en Oklahoma City" : "Brothers Remodeling OKC | Oklahoma City Remodeling";
+  const description = document.querySelector('meta[name="description"]');
+  if (description) description.setAttribute("content", language === "es" ? "Brothers Remodeling OKC ofrece remodelación bilingüe para cocinas, baños, pisos, interiores, exteriores, garajes y reparaciones en Oklahoma City." : "Brothers Remodeling OKC provides bilingual remodeling for kitchens, bathrooms, flooring, interiors, exterior work, garages, and repairs in Oklahoma City.");
+  document.querySelectorAll("[data-i18n-original]").forEach((node) => {
+    const original = node.getAttribute("data-i18n-original") || "";
+    node.textContent = language === "es" ? translateTextValue(original) : original;
+  });
+  document.querySelectorAll("body *").forEach((node) => {
+    const element = node as HTMLElement;
+    if (["SCRIPT", "STYLE", "NOSCRIPT", "SVG", "PATH"].includes(element.tagName)) return;
+    element.childNodes.forEach((child) => {
+      if (child.nodeType !== Node.TEXT_NODE) return;
+      const original = (child as Text).data;
+      if (!original.replace(/\s+/g, "").length) return;
+      const parent = child.parentElement;
+      if (!parent) return;
+      if (parent.childNodes.length === 1) {
+        if (!parent.getAttribute("data-i18n-original")) parent.setAttribute("data-i18n-original", original);
+        child.textContent = language === "es" ? translateTextValue(parent.getAttribute("data-i18n-original") || original) : (parent.getAttribute("data-i18n-original") || original);
+      } else {
+        child.textContent = language === "es" ? translateTextValue(original) : original;
+      }
+    });
+    ["placeholder", "aria-label", "title"].forEach((attribute) => {
+      const current = element.getAttribute(attribute);
+      if (!current) return;
+      const key = `data-i18n-${attribute}`;
+      const original = element.getAttribute(key) || current;
+      if (!element.getAttribute(key)) element.setAttribute(key, original);
+      const translated = attribute === "placeholder" ? (placeholderEs[original] || translateTextValue(original)) : translateTextValue(original);
+      element.setAttribute(attribute, language === "es" ? translated : original);
+    });
+  });
+}
+
+function LanguageToggle() {
+  const { language, setLanguage } = useLanguage();
+  return <div className="languageToggle" aria-label="Language selector">
+    <button type="button" className={language === "en" ? "active" : ""} aria-pressed={language === "en"} onClick={() => setLanguage("en")}>English</button>
+    <span>/</span>
+    <button type="button" className={language === "es" ? "active" : ""} aria-pressed={language === "es"} onClick={() => setLanguage("es")}>Español</button>
+  </div>;
+}
+
+function NativeTranslationLayer({ children }: { children: React.ReactNode }) {
+  const { language } = useLanguage();
+  React.useEffect(() => {
+    applyNativeTranslations(language);
+    const observer = new MutationObserver(() => window.requestAnimationFrame(() => applyNativeTranslations(language)));
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [language]);
+  return <>{children}</>;
+}
+
+
 const services: Array<[string, string, IconType]> = [
   ["Kitchen Remodeling", "Cabinets, counters, backsplash, lighting, islands, flooring, layout improvements, and cleaner daily function.", Utensils],
   ["Bathroom Remodeling", "Showers, tubs, tile, vanities, fixtures, waterproofing details, ventilation, and better storage.", Bath],
@@ -97,7 +387,7 @@ function AppLink({ href, children, className, onClick }: { href: string; childre
 function QuoteButton({ children, className = "cta", source = "quote-button" }: { children: React.ReactNode; className?: string; source?: string }) { const openQuote = React.useContext(QuoteModalContext); return <button type="button" className={className} onClick={() => { track("quote_modal_open", { source }); openQuote(source); }}>{children}</button>; }
 function cityBySlug(slug?: string) { return cities.find((city) => city.slug === slug); }
 
-function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></header>; }
+function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><div className="headerActions"><LanguageToggle /><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></div></header>; }
 function SiteMotion() {
   React.useEffect(() => {
     const root = document.documentElement;
@@ -248,7 +538,7 @@ function LeadOpsVisual() {
   </div>;
 }
 function LeadFlowLineSection() { const steps = ["Project details received", "Details reviewed", "Visit or quote step confirmed", "Remodel work scheduled"]; return <section className="section flow"><p className="eyebrow dark"><ClipboardCheck size={18} /> Project flow</p><h2>A cleaner path from first message to remodel plan.</h2><div className="flowLine">{steps.map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div></section>; }
-function LeadLeakAudit() { const items = ["Room or area is clearly described", "Photos are ready to send", "Timeline expectations are known", "Access, pets, parking, or special notes are listed", "Budget range or finish level can be discussed"]; const [checked, setChecked] = React.useState<string[]>([]); return <section className="section audit"><p className="eyebrow dark"><Shield size={18} /> Interactive checklist</p><h2>Before you request a quote, collect the details that prevent back-and-forth.</h2><div className="auditGrid">{items.map((item) => <label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={(e) => setChecked((current) => e.target.checked ? [...current, item] : current.filter((x) => x !== item))} /><span>{item}</span></label>)}</div><p className="sectionLead">Checklist progress: {checked.length} of {items.length} ready.</p></section>; }
+function LeadLeakAudit() { const { language } = useLanguage(); const items = ["Room or area is clearly described", "Photos are ready to send", "Timeline expectations are known", "Access, pets, parking, or special notes are listed", "Budget range or finish level can be discussed"]; const [checked, setChecked] = React.useState<string[]>([]); return <section className="section audit"><p className="eyebrow dark"><Shield size={18} /> Interactive checklist</p><h2>Before you request a quote, collect the details that prevent back-and-forth.</h2><div className="auditGrid">{items.map((item) => <label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={(e) => setChecked((current) => e.target.checked ? [...current, item] : current.filter((x) => x !== item))} /><span>{item}</span></label>)}</div><p className="sectionLead">{language === "es" ? `Progreso de la lista: ${checked.length} de ${items.length} listo(s).` : `Checklist progress: ${checked.length} of ${items.length} ready.`}</p></section>; }
 function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
 function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><QuoteButton className="stickyQuote" source="sticky-request-quote">Request quote</QuoteButton></aside>; }
 
@@ -283,4 +573,4 @@ function ContactPage() { return <Shell><PageHero icon={<Mail size={18} />} eyebr
 function PageHero({ eyebrow, title, text, icon }: { eyebrow: string; title: string; text: string; icon: React.ReactNode }) { return <section className="pageHero"><p className="eyebrow">{icon} {eyebrow}</p><h1>{title}</h1><p>{text}</p></section>; }
 function NotFound() { const [, navigate] = useLocation(); return <Shell><section className="pageHero"><h1>Page not found</h1><p>The page you requested is not available.</p><button className="cta" onClick={() => navigate("/")}>Back home</button></section></Shell>; }
 
-export default function App() { return <Switch><Route path="/" component={HomePage} /><Route path="/services" component={ServicesPage} /><Route path="/services/kitchen-remodeling" component={ServiceDetailPage} /><Route path="/services/bathroom-remodeling" component={ServiceDetailPage} /><Route path="/services/interior-renovations" component={ServiceDetailPage} /><Route path="/services/flooring-installation" component={ServiceDetailPage} /><Route path="/services/exterior-remodeling" component={ServiceDetailPage} /><Route path="/services/additions-garages-conversions" component={ServiceDetailPage} /><Route path="/services/outdoor-living-spaces" component={ServiceDetailPage} /><Route path="/services/repair-maintenance" component={ServiceDetailPage} /><Route path="/services/:serviceSlug" component={ServiceDetailPage} /><Route path="/process" component={ProcessPage} /><Route path="/about" component={AboutPage} /><Route path="/gallery" component={GalleryPage} /><Route path="/service-area" component={ServiceAreaPage} /><Route path="/service-area/:citySlug" component={CityPage} /><Route path="/contact" component={ContactPage} /><Route path="/sitemap" component={SitemapPage} /><Route component={NotFound} /></Switch>; }
+export default function App() { const [language, setLanguageState] = React.useState<Language>(() => { try { return localStorage.getItem(LANGUAGE_STORAGE_KEY) === "es" ? "es" : "en"; } catch { return "en"; } }); const setLanguage = React.useCallback((next: Language) => { setLanguageState(next); try { localStorage.setItem(LANGUAGE_STORAGE_KEY, next); } catch {} }, []); return <LanguageContext.Provider value={{ language, setLanguage }}><NativeTranslationLayer key={language}><Switch><Route path="/" component={HomePage} /><Route path="/services" component={ServicesPage} /><Route path="/services/kitchen-remodeling" component={ServiceDetailPage} /><Route path="/services/bathroom-remodeling" component={ServiceDetailPage} /><Route path="/services/interior-renovations" component={ServiceDetailPage} /><Route path="/services/flooring-installation" component={ServiceDetailPage} /><Route path="/services/exterior-remodeling" component={ServiceDetailPage} /><Route path="/services/additions-garages-conversions" component={ServiceDetailPage} /><Route path="/services/outdoor-living-spaces" component={ServiceDetailPage} /><Route path="/services/repair-maintenance" component={ServiceDetailPage} /><Route path="/services/:serviceSlug" component={ServiceDetailPage} /><Route path="/process" component={ProcessPage} /><Route path="/about" component={AboutPage} /><Route path="/gallery" component={GalleryPage} /><Route path="/service-area" component={ServiceAreaPage} /><Route path="/service-area/:citySlug" component={CityPage} /><Route path="/contact" component={ContactPage} /><Route path="/sitemap" component={SitemapPage} /><Route component={NotFound} /></Switch></NativeTranslationLayer></LanguageContext.Provider>; }
