@@ -173,8 +173,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T18:21:10.842Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --browser-route /services/kitchen-remodeling",
+      "completedAt": "2026-05-24T21:16:17.878Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /service-area/oklahoma-city",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -304,9 +304,9 @@
         }
       ],
       "sourceFingerprint": {
-        "sha256": "ca953f4f989f8e77f4d6242abbac960e4899db1322657b7d1fedc33f79200aed",
-        "fileCount": 109,
-        "bytes": 1490493
+        "sha256": "794e4b6efec91b4cedc279621524d7324f42fc29be97ee096c66956520bb1418",
+        "fileCount": 122,
+        "bytes": 4885194
       }
     }
   }

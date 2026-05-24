@@ -669,6 +669,60 @@ function LeadLeakAudit() { const { language } = useLanguage(); const items = ["R
 function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
 function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><QuoteButton className="stickyQuote" source="sticky-request-quote">Request quote</QuoteButton></aside>; }
 
+function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: string[] } }) {
+  const featuredServices = serviceDetails.slice(0, 6);
+  const guide = copy?.paragraphs || [];
+  const primaryGuide = guide.slice(0, 4);
+  const supportGuide = guide.slice(4, 7);
+  return <>
+    <section className="section cityOverview serviceOverview">
+      <div className="serviceIntroPanel cityIntroPanel">
+        <p className="eyebrow dark"><MapPin size={18} /> City overview</p>
+        <h2>Remodeling help organized around location, scope, and fit.</h2>
+        <p className="sectionLead">Brothers Remodeling OKC helps homeowners in {city.name} start with the details that matter most: project type, photos, address area, timing, finish level, and whether the work is a good fit for the schedule.</p>
+        <div className="serviceQuickStats cityQuickStats">
+          <span><b>1</b> Confirm city</span>
+          <span><b>2</b> Share scope</span>
+          <span><b>3</b> Plan next step</span>
+        </div>
+      </div>
+      <LeadForm city={city.name} />
+    </section>
+    <section className="section cityStructured serviceStructured">
+      <div>
+        <p className="eyebrow dark"><Hammer size={18} /> Common work in {city.name}</p>
+        <h2>Services grouped so homeowners can scan quickly.</h2>
+      </div>
+      <div className="serviceDetailCards cityServiceCards">
+        {featuredServices.map((service) => { const Icon = service.icon; return <AppLink href={`/services/${service.slug}`} key={service.slug}><Icon size={18} /><span>{service.title}</span></AppLink>; })}
+      </div>
+    </section>
+    <section className="section serviceTwoColumn cityTwoColumn">
+      <article className="servicePanel">
+        <h2>Local focus areas.</h2>
+        <p>{city.nearby}</p>
+        <div className="chips compactChips"><span>{city.name}</span><span>Oklahoma City metro</span><span>Nearby projects reviewed by fit</span></div>
+      </article>
+      <article className="servicePanel accentPanel">
+        <h2>Helpful first details.</h2>
+        <ul>{["Address area or nearest cross streets", "Project type and room or exterior area", "Photos from several angles", "Timing, access, pets, or parking notes", "Finish level or budget range if known"].map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul>
+      </article>
+    </section>
+    <section className="section serviceGuideGrid cityGuideGrid">
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> City guide</p><h2>Short, scannable remodeling guidance for {city.name}.</h2></div>
+      <div className="guideCards">{primaryGuide.map((paragraph, index) => <article className="guideCard" key={`${city.slug}-guide-${index}`}><b>{String(index + 1).padStart(2, "0")}</b><h3>{index === 0 ? `Remodeling in ${city.name}` : index === 1 ? "Scope and photos" : index === 2 ? "Schedule and access" : "Finish expectations"}</h3><p>{paragraph}</p></article>)}</div>
+    </section>
+    {supportGuide.length > 0 && <section className="section serviceSupportGrid citySupportGrid">
+      {supportGuide.map((paragraph, index) => <article className="servicePanel" key={`${city.slug}-support-${index}`}><h3>{index === 0 ? "Quote conversation" : index === 1 ? "Connected remodeling details" : "Local project fit"}</h3><p>{paragraph}</p></article>)}
+    </section>}
+    <section className="section">
+      <h2>How Brothers reviews a {city.name} remodel request.</h2>
+      <div className="flowLine">{["Confirm city and project type", "Review photos and scope", "Discuss quote or visit step", "Plan schedule and work details"].map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div>
+    </section>
+  </>;
+}
+
+
 function HomePage() { return <Shell><section className="hero"><div className="glow one" /><div className="glow two" /><div className="heroGrid"><div><p className="eyebrow"><Sparkles size={18} /> Full-service remodeling • English / Español</p><h1>Remodel your OKC home without the runaround.</h1><p className="sub">Brothers Remodeling OKC LLC helps homeowners update kitchens, bathrooms, floors, walls, exterior spaces, garages, and full homes across Oklahoma City and nearby areas.</p><div className="actions"><QuoteButton className="cta" source="hero-request-quote">Request Remodeling Quote <ArrowRight size={20} /></QuoteButton><a data-jeriko-track="email_click" onClick={() => track("email_click", { location: "hero" })} className="ghost" href={`mailto:${email}`}>Email Project Photos</a></div><div className="stats"><span><b>Full</b> service</span><span><b>Bi</b> lingual</span><span><b>OKC</b> focused</span></div></div><div className="showcase"><img src="/images/current-site/hero.jpg" alt="Brothers Remodeling OKC exterior remodeling work" /><div className="glass">Kitchens • Bathrooms • Floors • Paint • Exterior • Repairs</div></div></div></section><section className="section commandWrap"><LeadOpsVisual /></section><section className="strip">{["English and Spanish communication available", "Kitchens, baths, floors, paint, exterior work, garages, and repairs", "Focused on Oklahoma City and nearby communities", "Direct remodeling communication"].map((x) => <span key={x}><CheckCircle2 size={18} />{x}</span>)}</section><section className="section"><p className="eyebrow dark"><Hammer size={18} /> Remodeling services</p><h2>One remodeling company for almost every part of the home.</h2><ServicesGrid /></section><LeadFlowLineSection /><LeadLeakAudit /><BeforeAfterComparison /><ServiceAreaSection /></Shell>; }
 function ServicesPage() { return <Shell><PageHero icon={<Hammer size={18} />} eyebrow="Remodeling services" title="Kitchen, bathroom, interior, exterior, flooring, paint, and repair remodeling in OKC." text="Brothers Remodeling OKC gives homeowners one place to start for the most common remodeling needs around the home." /><section className="section"><div className="cards">{serviceDetails.map((service) => { const Icon = service.icon; return <AppLink className="card serviceLinkCard" href={`/services/${service.slug}`} key={service.slug}><Icon size={34} /><h3>{service.title}</h3><p>{service.short}</p><span>Read the {service.title.toLowerCase()} service page <ArrowRight size={16} /></span></AppLink>; })}</div></section><LeadFlowLineSection /></Shell>; }
 function ServiceDetailPage({ params }: { params: { serviceSlug: string } }) {
@@ -688,12 +742,9 @@ function ServiceAreaPage() { return <Shell><PageHero icon={<MapPin size={18} />}
 function CityPage({ params }: { params: { citySlug: string } }) {
   const city = cityBySlug(params.citySlug);
   if (!city) return <NotFound />;
-  const featured = services.slice(0, 6);
-  const article = /^[AEIOU]/i.test(city.name) ? "an" : "a";
   const copy = (cityContent as Record<string, { paragraphs: string[] }>)[city.slug];
-  return <Shell><PageHero icon={<MapPin size={18} />} eyebrow={`${city.name} remodeling contractor`} title={`${city.name} remodeling services for practical home upgrades.`} text={`Brothers Remodeling OKC helps homeowners in and around ${city.name} start kitchen, bathroom, flooring, interior, exterior, garage, and repair projects with clear bilingual communication.`} /><section className="section citySeo"><div><h2>Home remodeling in {city.name}</h2><p>Common requests around {city.name} include {city.note}. Nearby focus areas include {city.nearby}.</p><p>Good quote requests include the room or exterior area, photos if available, the problem you want solved, timing, and whether the project involves materials, access limitations, or multiple rooms.</p><div className="cityDetailGrid"><article><b>Best fit projects</b><span>Kitchens, baths, flooring, paint, drywall, trim, doors, exterior repairs, garages, additions, and whole-home refreshes.</span></article><article><b>Helpful first details</b><span>Address area, photos, room size, desired finish level, timeline, and whether you need English or Spanish communication.</span></article></div></div><div className="seoBox"><h3>Services for {city.name}</h3><ul>{featured.map(([item]) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul></div></section><section className="section cityLongCopy"><p className="eyebrow dark"><MapPin size={18} /> City remodeling guide</p><h2>{city.name} remodeling guidance for real homeowner decisions.</h2>{copy?.paragraphs.map((paragraph, index) => <p key={`${city.slug}-copy-${index}`}>{paragraph}</p>)}</section><section className="section"><h2>How Brothers reviews {article} {city.name} remodel request.</h2><div className="flowLine">{["Confirm city and project type", "Review photos and scope", "Discuss quote or visit step", "Plan schedule and work details"].map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div></section><section className="contact" id="quote"><div><h2>Request a remodeling quote in {city.name}.</h2><p>Tell Brothers Remodeling OKC what you want changed, what area the home is in, and whether you have project photos. The more specific the request, the faster the team can decide the right next step.</p><p className="contactLine"><Mail /> <a href={`mailto:${email}`}>{email}</a></p></div><LeadForm city={city.name} /></section></Shell>;
+  return <Shell><PageHero icon={<MapPin size={18} />} eyebrow={`${city.name} remodeling contractor`} title={`${city.name} remodeling services for practical home upgrades.`} text={`Brothers Remodeling OKC helps homeowners in and around ${city.name} start kitchen, bathroom, flooring, interior, exterior, garage, and repair projects with clear bilingual communication.`} /><CityDetailLayout city={city} copy={copy} /></Shell>;
 }
-
 function SitemapPage() { return <Shell><PageHero icon={<MapPin size={18} />} eyebrow="Sitemap" title="All Brothers Remodeling OKC website pages." text="Use this page to find every main route, service page, service-area page, contact option, and sitemap file." /><section className="section sitemapPage"><div><h2>Main pages</h2><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink><AppLink href="/sitemap">HTML Sitemap</AppLink><span>XML Sitemap: /sitemap.xml</span></div><div><h2>Service pages</h2>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</div><div><h2>Service-area pages</h2>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</div></section></Shell>; }
 
 function ContactPage() { const { language } = useLanguage(); return <Shell><PageHero icon={<Mail size={18} />} eyebrow="Contact Brothers Remodeling OKC" title="Tell us what you want remodeled." text="Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them." /><section className="contact"><div><h2>Request a quote conversation.</h2><p>Brothers Remodeling OKC handles kitchens, bathrooms, flooring, interior renovations, exterior remodeling, garages, repairs, commercial spaces, and whole-home updates in the Oklahoma City area.</p><p className="contactLine"><Mail /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p className="contactLine"><Phone /> <a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "contact-page" })}>{phoneDisplay}</a></p><p className="contactLine"><Phone /> {language === "es" ? "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización." : "Call (405) 209-9487 or use the form to start a real quote conversation."}</p></div><LeadForm /></section></Shell>; }
