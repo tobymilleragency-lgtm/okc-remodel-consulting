@@ -198,6 +198,14 @@ const textEs: Record<string, string> = {
   "Photo imported from the prior Brothers Remodeling OKC gallery.": "Foto importada de la galería anterior de Brothers Remodeling OKC.",
   "Existing Brothers Remodeling OKC gallery asset.": "Recurso existente de la galería de Brothers Remodeling OKC.",
   "Gallery photo brought over from the old site.": "Foto de galería traída del sitio anterior.",
+  "New portfolio photo": "Nueva foto del portafolio",
+  "New project detail": "Nuevo detalle del proyecto",
+  "Added gallery photo": "Foto agregada a la galería",
+  "Added project photo": "Foto de proyecto agregada",
+  "Recent photo supplied for the Brothers Remodeling OKC gallery.": "Foto reciente proporcionada para la galería de Brothers Remodeling OKC.",
+  "Recent homeowner-supplied image added to the portfolio.": "Imagen reciente proporcionada por el propietario y agregada al portafolio.",
+  "Additional Brothers Remodeling OKC portfolio image.": "Imagen adicional del portafolio de Brothers Remodeling OKC.",
+  "New gallery photo supplied for project reference.": "Nueva foto de galería proporcionada como referencia del proyecto.",
   "Exterior and curb appeal work": "Trabajo exterior y presentación de fachada",
   "Interior remodel finish work": "Acabados de remodelación interior",
   "Remodeling categories": "Categorías de remodelación",
@@ -343,6 +351,10 @@ const portfolioPhotos = [
   { src: "/images/portfolio/1000023327.jpg", alt: "Brothers Remodeling OKC completed room update photo", title: "Room update photo", note: "Real project image from the existing gallery." },
   { src: "/images/portfolio/1000023299.jpg", alt: "Brothers Remodeling OKC project progress or finish photo", title: "Project photo", note: "Existing Brothers Remodeling OKC gallery asset." },
   { src: "/images/portfolio/1000019089.jpg", alt: "Brothers Remodeling OKC remodeling project image", title: "Remodeling project image", note: "Gallery photo brought over from the old site." },
+  { src: "/images/portfolio/brothers-whatsapp-gallery-01.jpeg", alt: "Brothers Remodeling OKC homeowner-supplied portfolio photo", title: "New portfolio photo", note: "Recent photo supplied for the Brothers Remodeling OKC gallery." },
+  { src: "/images/portfolio/brothers-whatsapp-gallery-02.jpeg", alt: "Brothers Remodeling OKC recent project portfolio photo", title: "New project detail", note: "Recent homeowner-supplied image added to the portfolio." },
+  { src: "/images/portfolio/brothers-whatsapp-gallery-03.jpeg", alt: "Brothers Remodeling OKC added remodeling portfolio photo", title: "Added gallery photo", note: "Additional Brothers Remodeling OKC portfolio image." },
+  { src: "/images/portfolio/brothers-whatsapp-gallery-04.jpeg", alt: "Brothers Remodeling OKC added project gallery photo", title: "Added project photo", note: "New gallery photo supplied for project reference." },
 ];
 
 const serviceDetails = [
