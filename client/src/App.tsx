@@ -96,6 +96,28 @@ function AppLink({ href, children, className, onClick }: { href: string; childre
 function cityBySlug(slug?: string) { return cities.find((city) => city.slug === slug); }
 
 function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><AppLink className="pill" href="/contact">Request Quote</AppLink></header>; }
+function SiteMotion() {
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const updateMouse = (event: PointerEvent) => {
+      root.style.setProperty("--mx", `${event.clientX}px`);
+      root.style.setProperty("--my", `${event.clientY}px`);
+    };
+    const updateScroll = () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      root.style.setProperty("--scroll", `${progress * 100}%`);
+    };
+    window.addEventListener("pointermove", updateMouse, { passive: true });
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    updateScroll();
+    return () => {
+      window.removeEventListener("pointermove", updateMouse);
+      window.removeEventListener("scroll", updateScroll);
+    };
+  }, []);
+  return <><div className="scrollProgress" aria-hidden="true" /><div className="cursorGlow" aria-hidden="true" /><div className="siteParticles" aria-hidden="true"><i /><i /><i /><i /></div></>;
+}
 function Footer() {
   return <footer className="siteFooter">
     <div className="footerBrand">
@@ -111,7 +133,7 @@ function Footer() {
     <div className="footerBottom"><span>© {new Date().getFullYear()} Brothers Remodeling OKC LLC. No fake reviews, no online payments, no auth.</span><span>Built for real remodeling quote conversations.</span></div>
   </footer>;
 }
-function Shell({ children }: { children: React.ReactNode }) { return <><Header /><main>{children}</main><StickyAuditRail /><Footer /></>; }
+function Shell({ children }: { children: React.ReactNode }) { return <><SiteMotion /><Header /><main>{children}</main><StickyAuditRail /><Footer /></>; }
 
 function LeadForm({ city }: { city?: string }) {
   const [status, setStatus] = React.useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -161,7 +183,27 @@ function LeadForm({ city }: { city?: string }) {
 }
 
 function ServicesGrid() { return <div className="cards">{services.map(([title, text, Icon]) => <article className="card" key={title}><Icon size={34} /><h3>{title}</h3><p>{text}</p></article>)}</div>; }
-function LeadOpsVisual() { return <div className="opsVisual" aria-label="Remodel project command center visual"><div className="opsTop"><span>Project path</span><b>Project Details → Visit → Quote → Build</b></div><div className="opsRows"><span className="active">Kitchen / bath requests</span><span>Photos and access notes</span><span>Materials and finish level</span><span>Scheduling and next steps</span></div><div className="opsMeter"><i style={{ width: "76%" }} /></div></div>; }
+function LeadOpsVisual() {
+  const steps = [
+    { label: "Project details", detail: "Room, city, timing, and the real problem", width: 24 },
+    { label: "Photos reviewed", detail: "Access, finishes, damage, and hidden-condition clues", width: 49 },
+    { label: "Quote path", detail: "Call, visit, scope notes, and next-step fit", width: 73 },
+    { label: "Build plan", detail: "Schedule, materials, cleanup, and communication", width: 94 },
+  ];
+  const [active, setActive] = React.useState(0);
+  React.useEffect(() => {
+    const timer = window.setInterval(() => setActive((current) => (current + 1) % steps.length), 1900);
+    return () => window.clearInterval(timer);
+  }, [steps.length]);
+  return <div className="opsVisual animatedOps" aria-label="Animated remodel project command center visual">
+    <div className="opsScanner" />
+    <div className="opsTop"><span><i /> Live project path</span><b>{steps[active].label} → {steps[(active + 1) % steps.length].label}</b></div>
+    <div className="opsStageRail">{steps.map((step, index) => <button type="button" key={step.label} className={index === active ? "current" : ""} onClick={() => setActive(index)}><em>{index + 1}</em><strong>{step.label}</strong><small>{step.detail}</small></button>)}</div>
+    <div className="opsRows">{["Kitchen / bath requests", "Photos and access notes", "Materials and finish level", "Scheduling and next steps"].map((item, index) => <span key={item} className={index === active ? "active" : ""}><i />{item}</span>)}</div>
+    <div className="opsMeter"><i style={{ width: `${steps[active].width}%` }} /></div>
+    <div className="opsPulseGrid"><span>Scope clarity</span><span>Photo review</span><span>Quote fit</span></div>
+  </div>;
+}
 function LeadFlowLineSection() { const steps = ["Project details received", "Details reviewed", "Visit or quote step confirmed", "Remodel work scheduled"]; return <section className="section flow"><p className="eyebrow dark"><ClipboardCheck size={18} /> Project flow</p><h2>A cleaner path from first message to remodel plan.</h2><div className="flowLine">{steps.map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div></section>; }
 function LeadLeakAudit() { const items = ["Room or area is clearly described", "Photos are ready to send", "Timeline expectations are known", "Access, pets, parking, or special notes are listed", "Budget range or finish level can be discussed"]; const [checked, setChecked] = React.useState<string[]>([]); return <section className="section audit"><p className="eyebrow dark"><Shield size={18} /> Interactive checklist</p><h2>Before you request a quote, collect the details that prevent back-and-forth.</h2><div className="auditGrid">{items.map((item) => <label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={(e) => setChecked((current) => e.target.checked ? [...current, item] : current.filter((x) => x !== item))} /><span>{item}</span></label>)}</div><p className="sectionLead">Checklist progress: {checked.length} of {items.length} ready.</p></section>; }
 function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
