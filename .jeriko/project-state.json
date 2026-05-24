@@ -139,8 +139,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T01:06:07.021Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4182 --route /api/health --browser-route /service-area/oklahoma-city-ok",
+      "completedAt": "2026-05-24T01:20:33.325Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4183 --route /api/health --browser-route /service-area/oklahoma-city-ok",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -148,10 +148,6 @@
         },
         {
           "name": "scaffold_residue_scan",
-          "ok": true
-        },
-        {
-          "name": "public_builder_meta_scan",
           "ok": true
         },
         {
@@ -259,20 +255,20 @@
         {
           "name": "start_route",
           "ok": true,
-          "command": "PORT=4182 pnpm run start",
+          "command": "PORT=4183 pnpm run start",
           "status": 0
         },
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "PORT=4182 pnpm run start",
+          "command": "pnpm run preview --port 4183 --strictPort",
           "status": 0
         }
       ],
       "sourceFingerprint": {
-        "sha256": "95d502ae7d91944731d506f2459cb351458af654f57941399a61f85d7fb87b56",
+        "sha256": "7891212e0771458aabe3a734f7042c9b02a910bf2f598dd210ed124dabdce140",
         "fileCount": 107,
-        "bytes": 1006610
+        "bytes": 1006621
       }
     }
   }

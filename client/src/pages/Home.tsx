@@ -71,7 +71,7 @@ function Header() {
             <HomeIcon className="h-5 w-5" />
           </span>
           <span className="font-serif text-xl tracking-tight text-[var(--relax-navy)] transition group-hover:text-[var(--relax-gold)]">
-            OKC Remodel
+            OKC Remodel Consulting
           </span>
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-semibold text-[var(--relax-slate)] md:flex">
