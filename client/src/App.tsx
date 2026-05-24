@@ -7,6 +7,8 @@ type IconType = React.ComponentType<{ size?: number; className?: string }>;
 type City = { name: string; slug: string; note: string; nearby: string };
 
 const email = "brothersremodelingokc@gmail.com";
+const phoneDisplay = "(405) 209-9487";
+const phoneHref = "tel:+14052099487";
 
 type Language = "en" | "es";
 const LANGUAGE_STORAGE_KEY = "brothers-remodeling-okc-language";
@@ -35,6 +37,7 @@ const textEs: Record<string, string> = {
   "Service Area": "Área de servicio",
   "Contact": "Contacto",
   "Request Quote": "Solicitar cotización",
+  "Call (405) 209-9487": "Llamar al (405) 209-9487",
   "Menu": "Menú",
   "Close menu": "Cerrar menú",
   "English": "English",
@@ -231,12 +234,14 @@ const textEs: Record<string, string> = {
   "Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them.": "Envíe detalles del proyecto en inglés o español. Incluya la habitación, zona de la dirección, tiempo y fotos si las tiene.",
   "Request a quote conversation.": "Solicitar una conversación de cotización.",
   "Use the form or email project photos to start a real quote conversation.": "Use el formulario o envíe fotos por email para iniciar una conversación real de cotización.",
+  "Call (405) 209-9487 or use the form to start a real quote conversation.": "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización.",
   "Page not found": "Página no encontrada",
   "The page you requested is not available.": "La página solicitada no está disponible.",
   "Back home": "Volver al inicio",
   "Please add your name, phone, project type, and a short project description before sending.": "Agregue su nombre, teléfono, tipo de proyecto y una breve descripción antes de enviar.",
   "Your project details were sent. Brothers Remodeling OKC will review the request and follow up with the next step.": "Sus detalles fueron enviados. Brothers Remodeling OKC revisará la solicitud y dará seguimiento con el siguiente paso.",
   "The form could not be sent right now. Please email the project details and photos to brothersremodelingokc@gmail.com.": "El formulario no se pudo enviar en este momento. Envíe los detalles y fotos por email a brothersremodelingokc@gmail.com.",
+  "You can also call (405) 209-9487 or send photos and details to brothersremodelingokc@gmail.com.": "También puede llamar al (405) 209-9487 o enviar fotos y detalles a brothersremodelingokc@gmail.com.",
 };
 
 const placeholderEs: Record<string, string> = {
@@ -488,6 +493,7 @@ function QuoteButton({ children, className = "cta", source = "quote-button" }: {
 function cityBySlug(slug?: string) { return cities.find((city) => city.slug === slug); }
 
 function Header() {
+  const { language } = useLanguage();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const closeMenu = React.useCallback(() => setMenuOpen(false), []);
   const navItems = [
@@ -505,7 +511,7 @@ function Header() {
       <button type="button" className="mobileMenuButton" aria-label={menuOpen ? "Close menu" : "Menu"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}<span>{menuOpen ? "Close menu" : "Menu"}</span></button>
     </div>
     <nav id="main-navigation" className="mainNav" aria-label="Main navigation">{navItems.map(([label, href]) => <AppLink key={href} href={href} onClick={closeMenu}>{label}</AppLink>)}</nav>
-    <div className="headerActions"><LanguageToggle /><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></div>
+    <div className="headerActions"><LanguageToggle /><a className="callPill" data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "header" })}>{language === "es" ? "Llamar al" : "Call"} {phoneDisplay}</a><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></div>
   </header>;
 }
 function SiteMotion() {
@@ -537,7 +543,7 @@ function Footer() {
       <div><b>Brothers Remodeling OKC LLC</b><p>Full-service bilingual remodeling in Oklahoma City and nearby communities. Kitchens, bathrooms, flooring, interiors, exterior work, garages, additions, outdoor living, repairs, and maintenance.</p></div>
     </div>
     <div className="footerColumns">
-      <section><h3>Contact</h3><p><Mail size={16} /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p><MapPin size={16} /> Oklahoma City, Oklahoma</p><p><Languages size={16} /> English / Español</p><QuoteButton className="footerCta" source="footer-request-quote">Request a remodeling quote</QuoteButton></section>
+      <section><h3>Contact</h3><p><Phone size={16} /> <a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "footer" })}>{phoneDisplay}</a></p><p><Mail size={16} /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p><MapPin size={16} /> Oklahoma City, Oklahoma</p><p><Languages size={16} /> English / Español</p><QuoteButton className="footerCta" source="footer-request-quote">Request a remodeling quote</QuoteButton></section>
       <section><h3>Main pages</h3><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink><AppLink href="/sitemap">HTML Sitemap</AppLink><span>XML Sitemap: /sitemap.xml</span></section>
       <section><h3>Services</h3>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</section>
       <section><h3>Service areas</h3>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</section>
@@ -572,6 +578,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 }
 
 function LeadForm({ city }: { city?: string }) {
+  const { language } = useLanguage();
   const [status, setStatus] = React.useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = React.useState("");
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -631,7 +638,7 @@ function LeadForm({ city }: { city?: string }) {
     <label><span>Project instructions</span><textarea name="message" required placeholder="Tell us what needs remodeled, repaired, replaced, or updated. Include room, rough timeline, access notes, pets, parking, budget range, and whether you have photos ready." /></label>
     <label><span>Best time to call</span><input name="bestTime" placeholder="Morning, afternoon, evening, or specific days" /></label>
     <button disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send My Project"} <ArrowRight size={18} /></button>
-    <small>You can also send photos and details to <a href={`mailto:${email}`}>{email}</a>.</small>
+    <small>{language === "es" ? "También puede llamar al " : "You can also call "}<a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "lead-form" })}>{phoneDisplay}</a>{language === "es" ? " o enviar fotos y detalles a " : " or send photos and details to "}<a href={`mailto:${email}`}>{email}</a>.</small>
   </form>;
 }
 
@@ -689,7 +696,7 @@ function CityPage({ params }: { params: { citySlug: string } }) {
 
 function SitemapPage() { return <Shell><PageHero icon={<MapPin size={18} />} eyebrow="Sitemap" title="All Brothers Remodeling OKC website pages." text="Use this page to find every main route, service page, service-area page, contact option, and sitemap file." /><section className="section sitemapPage"><div><h2>Main pages</h2><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink><AppLink href="/sitemap">HTML Sitemap</AppLink><span>XML Sitemap: /sitemap.xml</span></div><div><h2>Service pages</h2>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</div><div><h2>Service-area pages</h2>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</div></section></Shell>; }
 
-function ContactPage() { return <Shell><PageHero icon={<Mail size={18} />} eyebrow="Contact Brothers Remodeling OKC" title="Tell us what you want remodeled." text="Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them." /><section className="contact"><div><h2>Request a quote conversation.</h2><p>Brothers Remodeling OKC handles kitchens, bathrooms, flooring, interior renovations, exterior remodeling, garages, repairs, commercial spaces, and whole-home updates in the Oklahoma City area.</p><p className="contactLine"><Mail /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p className="contactLine"><Phone /> Use the form or email project photos to start a real quote conversation.</p></div><LeadForm /></section></Shell>; }
+function ContactPage() { const { language } = useLanguage(); return <Shell><PageHero icon={<Mail size={18} />} eyebrow="Contact Brothers Remodeling OKC" title="Tell us what you want remodeled." text="Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them." /><section className="contact"><div><h2>Request a quote conversation.</h2><p>Brothers Remodeling OKC handles kitchens, bathrooms, flooring, interior renovations, exterior remodeling, garages, repairs, commercial spaces, and whole-home updates in the Oklahoma City area.</p><p className="contactLine"><Mail /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p className="contactLine"><Phone /> <a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "contact-page" })}>{phoneDisplay}</a></p><p className="contactLine"><Phone /> {language === "es" ? "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización." : "Call (405) 209-9487 or use the form to start a real quote conversation."}</p></div><LeadForm /></section></Shell>; }
 function PageHero({ eyebrow, title, text, icon }: { eyebrow: string; title: string; text: string; icon: React.ReactNode }) { return <section className="pageHero"><p className="eyebrow">{icon} {eyebrow}</p><h1>{title}</h1><p>{text}</p></section>; }
 function NotFound() { const [, navigate] = useLocation(); return <Shell><section className="pageHero"><h1>Page not found</h1><p>The page you requested is not available.</p><button className="cta" onClick={() => navigate("/")}>Back home</button></section></Shell>; }
 
