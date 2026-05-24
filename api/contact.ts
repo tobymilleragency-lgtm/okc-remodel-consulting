@@ -37,7 +37,7 @@ const GHL_API_VERSION = "2021-07-28";
 const LOCATION_ID = "f8kfxLOygXIaeYq7mHRl";
 const PIPELINE_ID = "uuiC6pXDeEgz5al2NS1P";
 const LANDING_STAGE_ID = "7e291f04-9e03-405f-9e9b-06871054fe96";
-const BACKUP_EMAIL_TO = "toby@okcremodelconsulting.com";
+const BACKUP_EMAIL_TO = "info@brothersremodelingokc.com";
 const CUSTOM_FIELD_IDS = {
   projectType: "fAF72O7jHu0hyOgBazOZ",
   projectDescription: "hezZEwg6G6reAkoKhNFs",
@@ -59,11 +59,11 @@ const REQUIRED_PROJECT_TYPES = new Set([
   "New Construction",
   "Roof",
 ]);
-const REQUIRED_STATES = new Set(["Oklahoma", "Oklahoma", "Missouri"]);
+const REQUIRED_STATES = new Set(["Oklahoma"]);
 const CONTACT_TAGS = ["website_lead", "homeowner"];
-const CONFIRMATION_EMAIL_SUBJECT = "Thanks for reaching out to Oklahoma Remodel Consulting";
+const CONFIRMATION_EMAIL_SUBJECT = "Thanks for reaching out to Brothers Remodeling OKC";
 const CONFIRMATION_EMAIL_TEXT =
-  "Thanks for reaching out — we'll call you back within one business day to schedule your consultation. If you don't hear back, reply to this email and we'll check on it.";
+  "Thanks for reaching out — we'll call you back within one business day to discuss your remodeling project. If you don't hear back, reply to this email and we'll check on it.";
 
 function asTrimmedString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
@@ -88,7 +88,7 @@ function sourceUrlFrom(req: VercelRequest, bodyValue: unknown): string {
 
   const origin = getHeader(req, "origin");
   const referer = getHeader(req, "referer");
-  return referer ?? origin ?? "https://okcremodelconsulting.com/contact";
+  return referer ?? origin ?? "https://brothers-remodeling-okc.vercel.app/contact";
 }
 
 function ghlToken(): string {
@@ -141,7 +141,7 @@ function metadataNote(metadata: { ipAddress: string; userAgent: string; submitte
 
 function leadSummary(lead: LeadSubmission): string {
   return [
-    "Oklahoma Remodel Consulting website lead",
+    "Brothers Remodeling OKC website lead",
     "",
     `Name: ${lead.firstName} ${lead.lastName}`,
     `Email: ${lead.email}`,
@@ -177,7 +177,7 @@ async function sendBackupEmail(lead: LeadSubmission, reason: unknown) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.BACKUP_EMAIL_FROM ?? "Oklahoma Remodel Consulting <toby@okcremodelconsulting.com>",
+        from: process.env.BACKUP_EMAIL_FROM ?? "Brothers Remodeling OKC <info@brothersremodelingokc.com>",
         to: [BACKUP_EMAIL_TO],
         subject: `Backup website lead: ${lead.firstName} ${lead.lastName}`,
         text,
@@ -226,7 +226,7 @@ async function createOrUpdateGhlContact(input: {
     name: `${input.firstName} ${input.lastName}`,
     email: input.email,
     phone: input.phone,
-    source: "Oklahoma Remodel Consulting website",
+    source: "Brothers Remodeling OKC website",
     tags: CONTACT_TAGS,
     customFields: [
       { id: CUSTOM_FIELD_IDS.projectType, key: "contact.project_type", field_value: input.projectType },
@@ -299,7 +299,7 @@ async function createMetadataNote(contactId: string, noteBody: string, token: st
 }
 
 async function sendGhlEmail(input: { contactId: string; emailTo: string; subject: string; text: string; token: string }) {
-  const fromEmail = process.env.GHL_CONFIRMATION_EMAIL_FROM ?? "toby@okcremodelconsulting.com";
+  const fromEmail = process.env.GHL_CONFIRMATION_EMAIL_FROM ?? "info@brothersremodelingokc.com";
   const html = input.text
     .split("\n")
     .map((line) => line.trim() ? `<p>${line.replace(/[&<>]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[char] ?? char))}</p>` : "<br />")
@@ -339,7 +339,7 @@ async function createOrUpdateOwnerNotificationContact(token: string) {
       lastName: "Notifications",
       name: "OKC Remodel Notifications",
       email: BACKUP_EMAIL_TO,
-      source: "Oklahoma Remodel Consulting website notifications",
+      source: "Brothers Remodeling OKC website notifications",
     }),
   }, token);
 
@@ -405,7 +405,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   ) {
     return res.status(400).json({
       ok: false,
-      message: "Please complete all required fields and confirm the advisory-service acknowledgement.",
+      message: "Please complete all required fields for the remodeling quote request.",
     });
   }
 
@@ -439,7 +439,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({
       ok: true,
-      message: "Project intake received. You will be called back to schedule your consultation.",
+      message: "Project intake received. You will be called back to discuss your remodeling project.",
     });
   } catch (error) {
     const lead: LeadSubmission | null = firstName && lastName && email && phone && city && state && projectType && projectDescription
@@ -457,7 +457,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     return res.status(502).json({
       ok: false,
-      message: "The form could not be sent. Please email toby@okcremodelconsulting.com.",
+      message: "The form could not be sent. Please email info@brothersremodelingokc.com.",
     });
   }
 }

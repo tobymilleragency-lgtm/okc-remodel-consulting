@@ -3,5 +3,5 @@ type JsonResponse = {
 };
 
 export default function handler(_req: unknown, res: JsonResponse) {
-  res.status(200).json({ ok: true, app: "relax-remodel-consulting" });
+  res.status(200).json({ ok: true, app: "brothers-remodeling-okc" });
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "okc-remodel-consulting",
+  "name": "brothers-remodeling-okc",
   "template": "web-static",
   "profile": "web-static",
   "packageManager": "pnpm",
@@ -8,7 +8,7 @@
   "appSpec": {
     "version": 1,
     "source": "prompt",
-    "prompt": "Build a complete remodel consulting website like Relax Remodel for Oklahoma City and a 60 mile radius with full city area pages, services, SEO, structured content, no fake reviews, no payments, no auth.",
+    "prompt": "Build a badass full-service bilingual remodeling website for Brothers Remodeling OKC LLC serving Oklahoma City and nearby surrounding areas within about a 5 mile radius. Wide variety of remodeling for virtually every part of the home. No fake reviews, no payments, no auth.",
     "appType": "premium-local-service-marketing-site",
     "pages": [
       {
@@ -20,14 +20,6 @@
         "title": "Services"
       },
       {
-        "path": "/service-area",
-        "title": "Service Area"
-      },
-      {
-        "path": "/service-area/:slug",
-        "title": "City Page"
-      },
-      {
         "path": "/process",
         "title": "Process"
       },
@@ -36,41 +28,83 @@
         "title": "About"
       },
       {
+        "path": "/service-area",
+        "title": "Service Area"
+      },
+      {
+        "path": "/gallery",
+        "title": "Gallery"
+      },
+      {
         "path": "/contact",
         "title": "Contact"
+      },
+      {
+        "path": "/services/kitchen-remodeling",
+        "title": "Kitchen Remodeling"
+      },
+      {
+        "path": "/services/bathroom-remodeling",
+        "title": "Bathroom Remodeling"
+      },
+      {
+        "path": "/services/interior-renovations",
+        "title": "Interior Renovations"
+      },
+      {
+        "path": "/services/flooring-installation",
+        "title": "Flooring Installation"
+      },
+      {
+        "path": "/services/exterior-remodeling",
+        "title": "Exterior Remodeling"
+      },
+      {
+        "path": "/services/additions-garages-conversions",
+        "title": "Additions Garages Conversions"
+      },
+      {
+        "path": "/services/outdoor-living-spaces",
+        "title": "Outdoor Living Spaces"
+      },
+      {
+        "path": "/services/repair-maintenance",
+        "title": "Repair Maintenance"
       }
     ],
     "features": [
-      "premium remodel consulting homepage",
-      "service pages",
-      "Oklahoma City 60 mile service area",
-      "city area hub pages",
-      "lead forms with setup-needed status",
+      "bold premium remodeling homepage",
+      "bilingual English Spanish positioning",
+      "full-service remodeling service list",
+      "real process, about, gallery, service-area, services, and contact routes",
+      "quote request form wired to the app contact API with honest email backup",
       "SEO metadata",
-      "structured content"
+      "SPA internal navigation and Vercel static fallback routing",
+      "premium contractor conversion modules",
+      "individual SEO service pages with detailed 1000 to 1200 word remodeling guidance",
+      "1000 word SEO service pages for each remodeling service type"
     ],
     "workflows": [
       {
-        "id": "project-inquiry",
-        "label": "Project inquiry",
+        "id": "quote-request",
+        "label": "Remodeling quote request",
         "inputs": [
           "name",
           "phone",
           "email",
-          "city",
           "projectType",
           "message"
         ],
         "actions": [
           "validate",
-          "show setup-needed delivery status",
-          "call",
-          "email"
+          "submit to app contact API",
+          "show sent or honest error state",
+          "email backup"
         ],
         "outputs": [
           "visible validation",
-          "setup-needed message",
-          "phone/email links"
+          "sent confirmation or error",
+          "email link"
         ],
         "persistence": []
       }
@@ -89,9 +123,9 @@
     "successCriteria": [
       "verify_app passes",
       "routes render and are crawlable",
-      "city pages have structured sections and no wall-of-text",
       "no fake testimonials or fake review counts",
-      "forms validate and disclose setup-needed delivery"
+      "forms submit to a real app API or show honest backup",
+      "bilingual remodeling positioning is visible"
     ]
   },
   "commands": {
@@ -139,8 +173,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T01:40:17.952Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4187 --route /api/health --browser-route /service-area/oklahoma-city-ok",
+      "completedAt": "2026-05-24T04:33:15.488Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4196 --route /api/health --browser-route /services/kitchen-remodeling",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -148,6 +182,10 @@
         },
         {
           "name": "scaffold_residue_scan",
+          "ok": true
+        },
+        {
+          "name": "public_builder_meta_scan",
           "ok": true
         },
         {
@@ -255,20 +293,20 @@
         {
           "name": "start_route",
           "ok": true,
-          "command": "PORT=4187 pnpm run start",
+          "command": "PORT=4196 pnpm run start",
           "status": 0
         },
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "pnpm run preview --port 4187 --strictPort",
+          "command": "PORT=4196 pnpm run start",
           "status": 0
         }
       ],
       "sourceFingerprint": {
-        "sha256": "fdcd4ba34a5caf73ef6bfa6a4099644484867470b0cb9f7a842c9eaa9ffb7982",
-        "fileCount": 109,
-        "bytes": 1007268
+        "sha256": "24a32251d7f0f959da802e545d33abc18468035f978876bb900e61251fba5c1d",
+        "fileCount": 107,
+        "bytes": 1361398
       }
     }
   }
