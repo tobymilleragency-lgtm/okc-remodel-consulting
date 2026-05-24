@@ -92,10 +92,12 @@ const cities: City[] = [
 ];
 
 function track(type: string, payload: Record<string, string> = {}) { try { window.dispatchEvent(new CustomEvent("jeriko:track", { detail: { type, ...payload } })); } catch {} }
+const QuoteModalContext = React.createContext<(source?: string) => void>(() => {});
 function AppLink({ href, children, className, onClick }: { href: string; children: React.ReactNode; className?: string; onClick?: () => void }) { return <Link href={href} className={className} onClick={onClick}>{children}</Link>; }
+function QuoteButton({ children, className = "cta", source = "quote-button" }: { children: React.ReactNode; className?: string; source?: string }) { const openQuote = React.useContext(QuoteModalContext); return <button type="button" className={className} onClick={() => { track("quote_modal_open", { source }); openQuote(source); }}>{children}</button>; }
 function cityBySlug(slug?: string) { return cities.find((city) => city.slug === slug); }
 
-function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><AppLink className="pill" href="/contact">Request Quote</AppLink></header>; }
+function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></header>; }
 function SiteMotion() {
   React.useEffect(() => {
     const root = document.documentElement;
@@ -125,7 +127,7 @@ function Footer() {
       <div><b>Brothers Remodeling OKC LLC</b><p>Full-service bilingual remodeling in Oklahoma City and nearby communities. Kitchens, bathrooms, flooring, interiors, exterior work, garages, additions, outdoor living, repairs, and maintenance.</p></div>
     </div>
     <div className="footerColumns">
-      <section><h3>Contact</h3><p><Mail size={16} /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p><MapPin size={16} /> Oklahoma City, Oklahoma</p><p><Languages size={16} /> English / Español</p><AppLink className="footerCta" href="/contact">Request a remodeling quote</AppLink></section>
+      <section><h3>Contact</h3><p><Mail size={16} /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p><MapPin size={16} /> Oklahoma City, Oklahoma</p><p><Languages size={16} /> English / Español</p><QuoteButton className="footerCta" source="footer-request-quote">Request a remodeling quote</QuoteButton></section>
       <section><h3>Main pages</h3><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink><AppLink href="/sitemap">HTML Sitemap</AppLink><span>XML Sitemap: /sitemap.xml</span></section>
       <section><h3>Services</h3>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</section>
       <section><h3>Service areas</h3>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</section>
@@ -133,7 +135,31 @@ function Footer() {
     <div className="footerBottom"><span>© {new Date().getFullYear()} Brothers Remodeling OKC LLC. No fake reviews, no online payments, no auth.</span><span>Built for real remodeling quote conversations.</span></div>
   </footer>;
 }
-function Shell({ children }: { children: React.ReactNode }) { return <><SiteMotion /><Header /><main>{children}</main><StickyAuditRail /><Footer /></>; }
+function ContactModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = originalOverflow; window.removeEventListener("keydown", onKey); };
+  }, [open, onClose]);
+  if (!open) return null;
+  return <div className="quoteModalBackdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+    <section className="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+      <button type="button" className="modalClose" aria-label="Close quote form" onClick={onClose}>×</button>
+      <div className="modalIntro"><p className="eyebrow dark"><Mail size={18} /> Fast quote request</p><h2 id="quote-modal-title">Tell Brothers Remodeling OKC who to call and what needs remodeled.</h2><p>Add your name, phone number, project type, and clear instructions. If photos are ready, email them after submitting.</p></div>
+      <LeadForm />
+    </section>
+  </div>;
+}
+
+function Shell({ children }: { children: React.ReactNode }) {
+  const [quoteOpen, setQuoteOpen] = React.useState(false);
+  const closeQuote = React.useCallback(() => setQuoteOpen(false), []);
+  const openQuote = React.useCallback(() => setQuoteOpen(true), []);
+  return <QuoteModalContext.Provider value={openQuote}><SiteMotion /><Header /><main>{children}</main><StickyAuditRail /><Footer /><ContactModal open={quoteOpen} onClose={closeQuote} /></QuoteModalContext.Provider>;
+}
 
 function LeadForm({ city }: { city?: string }) {
   const [status, setStatus] = React.useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -179,7 +205,24 @@ function LeadForm({ city }: { city?: string }) {
       setMessage(`The form could not be sent right now. Please email the project details and photos to ${email}.`);
     }
   }
-  return <form data-jeriko-track="form_submit" className="lead" onSubmit={submit} noValidate><h3>Request a remodeling quote</h3><p>Tell us about the project. English or Spanish is welcome.</p>{message && <div className={`formStatus ${status}`} role="status"><b>{status === "sent" ? "Request sent." : "Email option available."}</b><span>{message}</span></div>}<input name="name" autoComplete="name" required placeholder="Name / Nombre" /><input name="phone" type="tel" autoComplete="tel" required placeholder="Phone / Teléfono" /><input name="email" type="email" autoComplete="email" placeholder="Email" /><input name="city" defaultValue={city || ""} placeholder="City / Area" /><select name="project" required><option value="">Project type</option><option>Kitchen</option><option>Bathroom</option><option>Flooring</option><option>Addition</option><option>Deck</option><option>Whole Home</option><option>Exterior</option><option>Other</option></select><textarea name="message" required placeholder="What do you want remodeled? Kitchen, bathroom, floors, paint, exterior, garage, whole home..." /><input name="bestTime" placeholder="Best time to call" /><button disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send My Project"} <ArrowRight size={18} /></button><small>You can also send photos and details to <a href={`mailto:${email}`}>{email}</a>.</small></form>;
+  return <form data-jeriko-track="form_submit" className="lead" onSubmit={submit} noValidate>
+    <h3>Request a remodeling quote</h3>
+    <p className="formInstructions">Fill in the basics below so Brothers Remodeling OKC knows exactly who to call, where the project is, and what needs remodeled. English or Spanish is welcome.</p>
+    {message && <div className={`formStatus ${status}`} role="status"><b>{status === "sent" ? "Request sent." : "Email option available."}</b><span>{message}</span></div>}
+    <div className="fieldGrid">
+      <label><span>Your name / Nombre</span><input name="name" autoComplete="name" required autoFocus placeholder="Full name" /></label>
+      <label><span>Phone number / Teléfono</span><input name="phone" type="tel" autoComplete="tel" required placeholder="Best phone number to call or text" /></label>
+    </div>
+    <div className="fieldGrid">
+      <label><span>Email, if you want replies there</span><input name="email" type="email" autoComplete="email" placeholder="Email address optional" /></label>
+      <label><span>City or part of OKC</span><input name="city" defaultValue={city || ""} placeholder="Oklahoma City, Edmond, Yukon..." /></label>
+    </div>
+    <label><span>Project type</span><select name="project" required><option value="">Choose the closest project type</option><option>Kitchen</option><option>Bathroom</option><option>Flooring</option><option>Addition</option><option>Deck</option><option>Whole Home</option><option>Exterior</option><option>Other</option></select></label>
+    <label><span>Project instructions</span><textarea name="message" required placeholder="Tell us what needs remodeled, repaired, replaced, or updated. Include room, rough timeline, access notes, pets, parking, budget range, and whether you have photos ready." /></label>
+    <label><span>Best time to call</span><input name="bestTime" placeholder="Morning, afternoon, evening, or specific days" /></label>
+    <button disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send My Project"} <ArrowRight size={18} /></button>
+    <small>You can also send photos and details to <a href={`mailto:${email}`}>{email}</a>.</small>
+  </form>;
 }
 
 function ServicesGrid() { return <div className="cards">{services.map(([title, text, Icon]) => <article className="card" key={title}><Icon size={34} /><h3>{title}</h3><p>{text}</p></article>)}</div>; }
@@ -207,9 +250,9 @@ function LeadOpsVisual() {
 function LeadFlowLineSection() { const steps = ["Project details received", "Details reviewed", "Visit or quote step confirmed", "Remodel work scheduled"]; return <section className="section flow"><p className="eyebrow dark"><ClipboardCheck size={18} /> Project flow</p><h2>A cleaner path from first message to remodel plan.</h2><div className="flowLine">{steps.map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div></section>; }
 function LeadLeakAudit() { const items = ["Room or area is clearly described", "Photos are ready to send", "Timeline expectations are known", "Access, pets, parking, or special notes are listed", "Budget range or finish level can be discussed"]; const [checked, setChecked] = React.useState<string[]>([]); return <section className="section audit"><p className="eyebrow dark"><Shield size={18} /> Interactive checklist</p><h2>Before you request a quote, collect the details that prevent back-and-forth.</h2><div className="auditGrid">{items.map((item) => <label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={(e) => setChecked((current) => e.target.checked ? [...current, item] : current.filter((x) => x !== item))} /><span>{item}</span></label>)}</div><p className="sectionLead">Checklist progress: {checked.length} of {items.length} ready.</p></section>; }
 function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
-function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><AppLink href="/contact">Request quote</AppLink></aside>; }
+function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><QuoteButton className="stickyQuote" source="sticky-request-quote">Request quote</QuoteButton></aside>; }
 
-function HomePage() { return <Shell><section className="hero"><div className="glow one" /><div className="glow two" /><div className="heroGrid"><div><p className="eyebrow"><Sparkles size={18} /> Full-service remodeling • English / Español</p><h1>Remodel your OKC home without the runaround.</h1><p className="sub">Brothers Remodeling OKC LLC helps homeowners update kitchens, bathrooms, floors, walls, exterior spaces, garages, and full homes across Oklahoma City and nearby areas.</p><div className="actions"><AppLink className="cta" href="/contact">Request Remodeling Quote <ArrowRight size={20} /></AppLink><a data-jeriko-track="email_click" onClick={() => track("email_click", { location: "hero" })} className="ghost" href={`mailto:${email}`}>Email Project Photos</a></div><div className="stats"><span><b>Full</b> service</span><span><b>Bi</b> lingual</span><span><b>OKC</b> focused</span></div></div><div className="showcase"><img src="/images/current-site/hero.jpg" alt="Brothers Remodeling OKC exterior remodeling work" /><div className="glass">Kitchens • Bathrooms • Floors • Paint • Exterior • Repairs</div></div></div></section><section className="section commandWrap"><LeadOpsVisual /></section><section className="strip">{["English and Spanish communication available", "Kitchens, baths, floors, paint, exterior work, garages, and repairs", "Focused on Oklahoma City and nearby communities", "Direct remodeling communication"].map((x) => <span key={x}><CheckCircle2 size={18} />{x}</span>)}</section><section className="section"><p className="eyebrow dark"><Hammer size={18} /> Remodeling services</p><h2>One remodeling company for almost every part of the home.</h2><ServicesGrid /></section><LeadFlowLineSection /><LeadLeakAudit /><BeforeAfterComparison /><ServiceAreaSection /></Shell>; }
+function HomePage() { return <Shell><section className="hero"><div className="glow one" /><div className="glow two" /><div className="heroGrid"><div><p className="eyebrow"><Sparkles size={18} /> Full-service remodeling • English / Español</p><h1>Remodel your OKC home without the runaround.</h1><p className="sub">Brothers Remodeling OKC LLC helps homeowners update kitchens, bathrooms, floors, walls, exterior spaces, garages, and full homes across Oklahoma City and nearby areas.</p><div className="actions"><QuoteButton className="cta" source="hero-request-quote">Request Remodeling Quote <ArrowRight size={20} /></QuoteButton><a data-jeriko-track="email_click" onClick={() => track("email_click", { location: "hero" })} className="ghost" href={`mailto:${email}`}>Email Project Photos</a></div><div className="stats"><span><b>Full</b> service</span><span><b>Bi</b> lingual</span><span><b>OKC</b> focused</span></div></div><div className="showcase"><img src="/images/current-site/hero.jpg" alt="Brothers Remodeling OKC exterior remodeling work" /><div className="glass">Kitchens • Bathrooms • Floors • Paint • Exterior • Repairs</div></div></div></section><section className="section commandWrap"><LeadOpsVisual /></section><section className="strip">{["English and Spanish communication available", "Kitchens, baths, floors, paint, exterior work, garages, and repairs", "Focused on Oklahoma City and nearby communities", "Direct remodeling communication"].map((x) => <span key={x}><CheckCircle2 size={18} />{x}</span>)}</section><section className="section"><p className="eyebrow dark"><Hammer size={18} /> Remodeling services</p><h2>One remodeling company for almost every part of the home.</h2><ServicesGrid /></section><LeadFlowLineSection /><LeadLeakAudit /><BeforeAfterComparison /><ServiceAreaSection /></Shell>; }
 function ServicesPage() { return <Shell><PageHero icon={<Hammer size={18} />} eyebrow="Remodeling services" title="Kitchen, bathroom, interior, exterior, flooring, paint, and repair remodeling in OKC." text="Brothers Remodeling OKC gives homeowners one place to start for the most common remodeling needs around the home." /><section className="section"><div className="cards">{services.map(([title, text, Icon]) => <AppLink className="card serviceLinkCard" href={`/services/${slugifyService(title)}`} key={title}><Icon size={34} /><h3>{title}</h3><p>{text}</p><span>Read the {title.toLowerCase()} service page <ArrowRight size={16} /></span></AppLink>)}</div></section><LeadFlowLineSection /></Shell>; }
 function ServiceDetailPage({ params }: { params: { serviceSlug: string } }) {
   const [location] = useLocation();
