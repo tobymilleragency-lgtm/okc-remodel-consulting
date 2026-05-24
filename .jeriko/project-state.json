@@ -139,8 +139,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T01:24:46.547Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4184 --route /api/health --browser-route /service-area/oklahoma-city-ok",
+      "completedAt": "2026-05-24T01:34:06.692Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4185 --route /api/health --browser-route /service-area/oklahoma-city-ok",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -148,10 +148,6 @@
         },
         {
           "name": "scaffold_residue_scan",
-          "ok": true
-        },
-        {
-          "name": "public_builder_meta_scan",
           "ok": true
         },
         {
@@ -259,13 +255,13 @@
         {
           "name": "start_route",
           "ok": true,
-          "command": "PORT=4184 pnpm run start",
+          "command": "PORT=4185 pnpm run start",
           "status": 0
         },
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "PORT=4184 pnpm run start",
+          "command": "pnpm run preview --port 4185 --strictPort",
           "status": 0
         }
       ],
