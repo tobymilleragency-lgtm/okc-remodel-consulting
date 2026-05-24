@@ -37,7 +37,7 @@ const GHL_API_VERSION = "2021-07-28";
 const LOCATION_ID = "f8kfxLOygXIaeYq7mHRl";
 const PIPELINE_ID = "uuiC6pXDeEgz5al2NS1P";
 const LANDING_STAGE_ID = "7e291f04-9e03-405f-9e9b-06871054fe96";
-const BACKUP_EMAIL_TO = "info@brothersremodelingokc.com";
+const BACKUP_EMAIL_TO = "brothersremodelingokc@gmail.com";
 const CUSTOM_FIELD_IDS = {
   projectType: "fAF72O7jHu0hyOgBazOZ",
   projectDescription: "hezZEwg6G6reAkoKhNFs",
@@ -177,7 +177,7 @@ async function sendBackupEmail(lead: LeadSubmission, reason: unknown) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.BACKUP_EMAIL_FROM ?? "Brothers Remodeling OKC <info@brothersremodelingokc.com>",
+        from: process.env.BACKUP_EMAIL_FROM ?? "Brothers Remodeling OKC <brothersremodelingokc@gmail.com>",
         to: [BACKUP_EMAIL_TO],
         subject: `Backup website lead: ${lead.firstName} ${lead.lastName}`,
         text,
@@ -457,7 +457,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     return res.status(502).json({
       ok: false,
-      message: "The form could not be sent. Please email info@brothersremodelingokc.com.",
+      message: "The form could not be sent. Please email brothersremodelingokc@gmail.com.",
     });
   }
 }

@@ -142,6 +142,7 @@ function LeadForm({ city }: { city?: string }) {
       bestTime: String(data.get("bestTime") || "Not specified"),
       sourceUrl: window.location.href,
       sourceLabel: city ? "city-page" : "website",
+      consent: true,
     };
     setStatus("sending");
     track("form_submit", { form: city ? "city-page" : "main" });
