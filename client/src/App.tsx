@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Route, Switch, useLocation } from "wouter";
-import { ArrowRight, Bath, Building2, CheckCircle2, ClipboardCheck, DoorOpen, Hammer, Home as HomeIcon, Languages, Mail, MapPin, Paintbrush, Phone, Shield, Sparkles, Utensils, Warehouse, Wrench } from "lucide-react";
+import { ArrowRight, Bath, Building2, CheckCircle2, ClipboardCheck, DoorOpen, Hammer, Home as HomeIcon, Languages, Mail, MapPin, Menu, Paintbrush, Phone, Shield, Sparkles, Utensils, Warehouse, Wrench, X } from "lucide-react";
 import cityContent from "./data/cityContent.json";
 
 type IconType = React.ComponentType<{ size?: number; className?: string }>;
@@ -35,6 +35,8 @@ const textEs: Record<string, string> = {
   "Service Area": "Área de servicio",
   "Contact": "Contacto",
   "Request Quote": "Solicitar cotización",
+  "Menu": "Menú",
+  "Close menu": "Cerrar menú",
   "English": "English",
   "Español": "Español",
   "Full-service remodeling • English / Español": "Remodelación completa • English / Español",
@@ -387,7 +389,27 @@ function AppLink({ href, children, className, onClick }: { href: string; childre
 function QuoteButton({ children, className = "cta", source = "quote-button" }: { children: React.ReactNode; className?: string; source?: string }) { const openQuote = React.useContext(QuoteModalContext); return <button type="button" className={className} onClick={() => { track("quote_modal_open", { source }); openQuote(source); }}>{children}</button>; }
 function cityBySlug(slug?: string) { return cities.find((city) => city.slug === slug); }
 
-function Header() { return <header className="top"><AppLink className="brand" href="/"><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink><nav aria-label="Main navigation"><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink></nav><div className="headerActions"><LanguageToggle /><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></div></header>; }
+function Header() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const closeMenu = React.useCallback(() => setMenuOpen(false), []);
+  const navItems = [
+    ["Home", "/"],
+    ["Services", "/services"],
+    ["Process", "/process"],
+    ["About", "/about"],
+    ["Gallery", "/gallery"],
+    ["Service Area", "/service-area"],
+    ["Contact", "/contact"],
+  ];
+  return <header className={`top ${menuOpen ? "menuOpen" : ""}`}>
+    <div className="mobileTopRow">
+      <AppLink className="brand" href="/" onClick={closeMenu}><img src="/images/current-site/logo.jpg" alt="Brothers Remodeling OKC logo" /><b>Brothers Remodeling OKC</b></AppLink>
+      <button type="button" className="mobileMenuButton" aria-label={menuOpen ? "Close menu" : "Menu"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}<span>{menuOpen ? "Close menu" : "Menu"}</span></button>
+    </div>
+    <nav id="main-navigation" className="mainNav" aria-label="Main navigation">{navItems.map(([label, href]) => <AppLink key={href} href={href} onClick={closeMenu}>{label}</AppLink>)}</nav>
+    <div className="headerActions"><LanguageToggle /><QuoteButton className="pill" source="header-request-quote">Request Quote</QuoteButton></div>
+  </header>;
+}
 function SiteMotion() {
   React.useEffect(() => {
     const root = document.documentElement;
