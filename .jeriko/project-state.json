@@ -173,7 +173,7 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T16:47:22.094Z",
+      "completedAt": "2026-05-24T17:08:06.884Z",
       "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /services/kitchen-remodeling",
       "gates": [
         {
@@ -182,10 +182,6 @@
         },
         {
           "name": "scaffold_residue_scan",
-          "ok": true
-        },
-        {
-          "name": "public_builder_meta_scan",
           "ok": true
         },
         {
@@ -299,14 +295,14 @@
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "PORT=4173 pnpm run start",
+          "command": "pnpm run preview --port 4173 --strictPort",
           "status": 0
         }
       ],
       "sourceFingerprint": {
-        "sha256": "a9e987a6aa52627e51681fb99e244f979352cfdabdd681cae83312fb193555db",
+        "sha256": "ca953f4f989f8e77f4d6242abbac960e4899db1322657b7d1fedc33f79200aed",
         "fileCount": 109,
-        "bytes": 1484825
+        "bytes": 1490493
       }
     }
   }

@@ -369,6 +369,57 @@ function serviceSeoSections(service: typeof serviceDetails[number]) {
   ];
 }
 function serviceSeoCopy(title: string) { const detail = serviceDetails.find((service) => service.title === title) || serviceDetails[0]; return serviceSeoSections(detail).map((section) => section.body); }
+function splitServiceFocus(focus: string) { return focus.split(/,\s*|,\s*and\s*/).map((item) => item.replace(/^and\s+/i, "").trim()).filter(Boolean).slice(0, 8); }
+function splitServiceRooms(rooms: string) { return rooms.split(/,\s*|,\s*and\s*/).map((item) => item.replace(/^and\s+/i, "").trim()).filter(Boolean).slice(0, 6); }
+function ServiceDetailLayout({ service, sections }: { service: typeof serviceDetails[number]; sections: ReturnType<typeof serviceSeoSections> }) {
+  const focusItems = splitServiceFocus(service.focus);
+  const roomItems = splitServiceRooms(service.rooms);
+  const keySections = sections.slice(0, 6);
+  const supportSections = sections.slice(6);
+  return <>
+    <section className="section serviceOverview">
+      <div className="serviceIntroPanel">
+        <p className="eyebrow dark"><Hammer size={18} /> Service overview</p>
+        <h2>Clear scope first. Better remodeling conversation next.</h2>
+        <p className="sectionLead">{service.short} Brothers Remodeling OKC keeps the service page organized around what homeowners actually need to decide: scope, condition, prep, finish level, communication, and next steps.</p>
+        <div className="serviceQuickStats">
+          <span><b>1</b> Describe the room</span>
+          <span><b>2</b> Send photos</span>
+          <span><b>3</b> Review scope</span>
+        </div>
+      </div>
+      <LeadForm />
+    </section>
+    <section className="section serviceStructured">
+      <div>
+        <p className="eyebrow dark"><CheckCircle2 size={18} /> What this can include</p>
+        <h2>{service.title} details without the wall of text.</h2>
+      </div>
+      <div className="serviceDetailCards">
+        {focusItems.map((item) => <article key={item}><CheckCircle2 size={18} /><span>{item}</span></article>)}
+      </div>
+    </section>
+    <section className="section serviceTwoColumn">
+      <article className="servicePanel">
+        <h2>Where this work commonly shows up.</h2>
+        <div className="chips compactChips">{roomItems.map((item) => <span key={item}>{item}</span>)}</div>
+      </article>
+      <article className="servicePanel accentPanel">
+        <h2>Helpful first details.</h2>
+        <ul>{["Address area or nearest OKC neighborhood", "Photos from multiple angles", "Timeline and access notes", "Finish level or budget range", "What must be repaired, replaced, or updated"].map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul>
+      </article>
+    </section>
+    <section className="section serviceGuideGrid">
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Project guide</p><h2>Short, scannable guidance for {service.title.toLowerCase()}.</h2></div>
+      <div className="guideCards">{keySections.map((section, index) => <article className="guideCard" key={section.heading}><b>{String(index + 1).padStart(2, "0")}</b><h3>{section.heading}</h3><p>{section.body}</p></article>)}</div>
+    </section>
+    <section className="section serviceSupportGrid">
+      {supportSections.map((section) => <article className="servicePanel" key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></article>)}
+    </section>
+    <LeadLeakAudit />
+    <BeforeAfterComparison />
+  </>;
+}
 
 const cities: City[] = [
   { name: "Oklahoma City", slug: "oklahoma-city", note: "kitchen remodels, bathroom upgrades, flooring, drywall, trim, paint, exterior repairs, garage updates, and full-home refreshes for OKC homeowners", nearby: "Downtown, Uptown, Classen, Mayfair, Belle Isle, Capitol Hill, and central OKC neighborhoods" },
@@ -573,7 +624,7 @@ function ServiceDetailPage({ params }: { params: { serviceSlug: string } }) {
   if (!service) return <NotFound />;
   const Icon = service.icon;
   const sections = serviceSeoSections(service);
-  return <Shell><PageHero icon={<Icon size={18} />} eyebrow="Remodeling service" title={`${service.title} in Oklahoma City`} text={service.short} /><section className="section serviceSeoPage"><div><p className="eyebrow dark"><Hammer size={18} /> Detailed service guidance</p><h2>What homeowners should know before starting {service.title.toLowerCase()}.</h2>{sections.map((section) => <article className="seoArticleBlock" key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></article>)}<h3>Common {service.title.toLowerCase()} details</h3><ul>{["Existing condition and repair needs", "Material and finish expectations", "Schedule, access, and cleanup notes", "Related drywall, paint, trim, floor, door, or exterior tie-ins", "Photos, measurements, and address-area details for the quote conversation"].map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul></div><LeadForm /></section><LeadLeakAudit /><BeforeAfterComparison /></Shell>;
+  return <Shell><PageHero icon={<Icon size={18} />} eyebrow="Remodeling service" title={`${service.title} in Oklahoma City`} text={service.short} /><ServiceDetailLayout service={service} sections={sections} /></Shell>;
 }
 function ProcessPage() { return <Shell><PageHero icon={<Shield size={18} />} eyebrow="Process" title="A clear remodeling process before work begins." text="The goal is direct communication, realistic scope conversations, and a next step homeowners understand." /><section className="split"><div><h2>How the project path works</h2><ul>{[["Send details", "Share the room, city, photos, timeline, and what needs to change."], ["Check scope", "Brothers Remodeling OKC reviews the work type, access, materials, and schedule."], ["Confirm next step", "If the job is a good match, the team follows up with the visit, quote step, or project conversation."], ["Build with updates", "Work proceeds with clear communication in English or Spanish."]].map(([title, text]) => <li key={title}><CheckCircle2 /><span><b>{title}</b><br />{text}</span></li>)}</ul></div><LeadOpsVisual /></section><LeadLeakAudit /></Shell>; }
 function AboutPage() { return <Shell><PageHero icon={<Building2 size={18} />} eyebrow="About" title="Brothers Remodeling OKC is a local remodeling contractor for real home upgrades." text="The company focuses on practical, good-looking remodel work across kitchens, bathrooms, flooring, interiors, exterior improvements, garages, repairs, and whole-home updates." /><section className="section"><h2>Built for homeowners who want direct remodeling help.</h2><p className="sectionLead">Brothers Remodeling OKC presents services, service area, process, and quote options plainly, without invented credentials or exaggerated claims.</p><div className="cards"><article className="card"><Languages /><h3>Bilingual communication</h3><p>English and Spanish project conversations are welcome.</p></article><article className="card"><Wrench /><h3>Wide service range</h3><p>Multiple rooms and repair scopes can be discussed in one place.</p></article><article className="card"><MapPin /><h3>OKC area focus</h3><p>Oklahoma City and nearby communities are the primary service area.</p></article></div></section></Shell>; }
