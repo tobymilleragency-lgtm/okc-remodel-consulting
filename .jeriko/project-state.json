@@ -173,8 +173,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T14:46:15.401Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4196 --route /api/health --browser-route /service-area/oklahoma-city",
+      "completedAt": "2026-05-24T15:23:21.068Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -293,20 +293,20 @@
         {
           "name": "start_route",
           "ok": true,
-          "command": "PORT=4196 pnpm run start",
+          "command": "PORT=4173 pnpm run start",
           "status": 0
         },
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "PORT=4196 pnpm run start",
+          "command": "PORT=4173 pnpm run start",
           "status": 0
         }
       ],
       "sourceFingerprint": {
-        "sha256": "87b2d041c8bef78efe18ecccf9376670fa2030d5f676c1d50b3d4d8f1228744c",
-        "fileCount": 110,
-        "bytes": 1431777
+        "sha256": "ed11071d89127fccd0188f848161082014c035db6937dbf53f0c45d382217e5e",
+        "fileCount": 109,
+        "bytes": 1445282
       }
     }
   }
