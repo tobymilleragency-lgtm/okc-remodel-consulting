@@ -173,7 +173,7 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T18:17:08.599Z",
+      "completedAt": "2026-05-24T18:19:40.547Z",
       "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --browser-route /services/kitchen-remodeling",
       "gates": [
         {
