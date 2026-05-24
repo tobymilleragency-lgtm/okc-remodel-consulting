@@ -1,0 +1,12 @@
+{
+  "id": "okc-remodel-consulting",
+  "name": "OKC Remodel Consulting",
+  "description": "Production remodel consulting website for Oklahoma City and surrounding communities.",
+  "capabilities": ["static", "local-seo", "lead-inquiry"],
+  "entrypoints": {
+    "home": "/",
+    "services": "/services",
+    "serviceArea": "/serving",
+    "contact": "/contact"
+  }
+}

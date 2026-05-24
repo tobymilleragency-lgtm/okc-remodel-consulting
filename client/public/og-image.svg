@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#172033"/>
+  <circle cx="1030" cy="115" r="260" fill="#233a5f" opacity="0.92"/>
+  <circle cx="120" cy="520" r="210" fill="#b8752a" opacity="0.18"/>
+  <path d="M88 90h1024v450H88z" fill="none" stroke="#d88a3d" stroke-width="3"/>
+  <text x="120" y="205" fill="#d88a3d" font-family="Georgia,serif" font-size="36" letter-spacing="4">OKC REMODEL CONSULTING</text>
+  <text x="120" y="315" fill="#fff8ed" font-family="Georgia,serif" font-size="74" font-weight="700">Remodel planning,</text>
+  <text x="120" y="400" fill="#fff8ed" font-family="Georgia,serif" font-size="74" font-weight="700">without the bid chaos.</text>
+  <text x="120" y="485" fill="#f4eadb" font-family="Arial,sans-serif" font-size="30">Oklahoma City • Edmond • Norman • 60-mile metro radius</text>
+</svg>

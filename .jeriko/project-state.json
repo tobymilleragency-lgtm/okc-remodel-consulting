@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "name": "okc-remodel-consulting",
+  "template": "web-static",
+  "profile": "web-static",
+  "packageManager": "pnpm",
+  "generatedAt": "2026-05-24T00:30:00.000Z",
+  "appSpec": {
+    "version": 1,
+    "source": "prompt",
+    "prompt": "Build a complete remodel consulting website like Relax Remodel for Oklahoma City and a 60 mile radius with full city area pages, services, SEO, structured content, no fake reviews, no payments, no auth.",
+    "appType": "premium-local-service-marketing-site",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Services"
+      },
+      {
+        "path": "/service-area",
+        "title": "Service Area"
+      },
+      {
+        "path": "/service-area/:slug",
+        "title": "City Page"
+      },
+      {
+        "path": "/process",
+        "title": "Process"
+      },
+      {
+        "path": "/about",
+        "title": "About"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact"
+      }
+    ],
+    "features": [
+      "premium remodel consulting homepage",
+      "service pages",
+      "Oklahoma City 60 mile service area",
+      "city area hub pages",
+      "lead forms with setup-needed status",
+      "SEO metadata",
+      "structured content"
+    ],
+    "workflows": [
+      {
+        "id": "project-inquiry",
+        "label": "Project inquiry",
+        "inputs": [
+          "name",
+          "phone",
+          "email",
+          "city",
+          "projectType",
+          "message"
+        ],
+        "actions": [
+          "validate",
+          "show setup-needed delivery status",
+          "call",
+          "email"
+        ],
+        "outputs": [
+          "visible validation",
+          "setup-needed message",
+          "phone/email links"
+        ],
+        "persistence": []
+      }
+    ],
+    "integrations": {
+      "allowed": [],
+      "forbidden": [
+        "stripe",
+        "auth",
+        "oauth",
+        "supabase",
+        "ai",
+        "crm"
+      ]
+    },
+    "successCriteria": [
+      "verify_app passes",
+      "routes render and are crawlable",
+      "city pages have structured sections and no wall-of-text",
+      "no fake testimonials or fake review counts",
+      "forms validate and disclose setup-needed delivery"
+    ]
+  },
+  "commands": {
+    "install": "pnpm install --frozen-lockfile --ignore-scripts",
+    "check": "pnpm run check",
+    "build": "pnpm run build",
+    "start": "PORT=${PORT} pnpm run start",
+    "dev": "pnpm run dev"
+  },
+  "routes": {
+    "home": "/",
+    "health": "/api/health"
+  },
+  "verification": {
+    "requiredGates": [
+      "app_spec_contract",
+      "placeholder_scan",
+      "scaffold_residue_scan",
+      "public_builder_meta_scan",
+      "unsafe_env_scan",
+      "primary_persistence_scan",
+      "mock_data_import_scan",
+      "provider_config_scan",
+      "image_uniqueness_scan",
+      "forbidden_integration_scan",
+      "premium_marketing_site_scan",
+      "install",
+      "check",
+      "build",
+      "production_artifact_scan",
+      "crawler_html",
+      "start_route",
+      "browser_smoke",
+      "workflow_contract",
+      "primary_action_wiring",
+      "app_spec_verifier",
+      "test",
+      "db_auth_workflow_wiring",
+      "auth_runtime_config_scan",
+      "readiness_claim_scan",
+      "business_math_realness",
+      "primary_fetch_error_handling",
+      "supabase_product_foundation"
+    ],
+    "lastSuccessfulVerification": {
+      "ok": true,
+      "profile": "web-static",
+      "completedAt": "2026-05-24T01:06:07.021Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/okc-remodel-consulting --profile web-static --port 4182 --route /api/health --browser-route /service-area/oklahoma-city-ok",
+      "gates": [
+        {
+          "name": "placeholder_scan",
+          "ok": true
+        },
+        {
+          "name": "scaffold_residue_scan",
+          "ok": true
+        },
+        {
+          "name": "public_builder_meta_scan",
+          "ok": true
+        },
+        {
+          "name": "unsafe_env_scan",
+          "ok": true
+        },
+        {
+          "name": "primary_persistence_scan",
+          "ok": true
+        },
+        {
+          "name": "db_auth_workflow_wiring",
+          "ok": true
+        },
+        {
+          "name": "auth_runtime_config_scan",
+          "ok": true
+        },
+        {
+          "name": "mock_data_import_scan",
+          "ok": true
+        },
+        {
+          "name": "provider_config_scan",
+          "ok": true
+        },
+        {
+          "name": "readiness_claim_scan",
+          "ok": true
+        },
+        {
+          "name": "image_uniqueness_scan",
+          "ok": true
+        },
+        {
+          "name": "app_spec_contract",
+          "ok": true
+        },
+        {
+          "name": "forbidden_integration_scan",
+          "ok": true
+        },
+        {
+          "name": "workflow_contract",
+          "ok": true
+        },
+        {
+          "name": "primary_action_wiring",
+          "ok": true
+        },
+        {
+          "name": "business_math_realness",
+          "ok": true
+        },
+        {
+          "name": "primary_fetch_error_handling",
+          "ok": true
+        },
+        {
+          "name": "supabase_product_foundation",
+          "ok": true
+        },
+        {
+          "name": "premium_marketing_site_scan",
+          "ok": true
+        },
+        {
+          "name": "app_spec_verifier",
+          "ok": true
+        },
+        {
+          "name": "install",
+          "ok": true,
+          "command": "pnpm install --frozen-lockfile --ignore-scripts",
+          "status": 0
+        },
+        {
+          "name": "check",
+          "ok": true,
+          "command": "pnpm run check",
+          "status": 0
+        },
+        {
+          "name": "test",
+          "ok": true,
+          "command": "pnpm run test",
+          "status": 0
+        },
+        {
+          "name": "build",
+          "ok": true,
+          "command": "pnpm run build",
+          "status": 0
+        },
+        {
+          "name": "production_artifact_scan",
+          "ok": true,
+          "status": 0
+        },
+        {
+          "name": "crawler_html",
+          "ok": true,
+          "status": 0
+        },
+        {
+          "name": "start_route",
+          "ok": true,
+          "command": "PORT=4182 pnpm run start",
+          "status": 0
+        },
+        {
+          "name": "browser_smoke",
+          "ok": true,
+          "command": "PORT=4182 pnpm run start",
+          "status": 0
+        }
+      ],
+      "sourceFingerprint": {
+        "sha256": "95d502ae7d91944731d506f2459cb351458af654f57941399a61f85d7fb87b56",
+        "fileCount": 107,
+        "bytes": 1006610
+      }
+    }
+  }
+}

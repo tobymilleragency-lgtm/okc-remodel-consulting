@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --relax-navy: #10243a;
+  --relax-navy-2: #17324f;
+  --relax-gold: #8f641f;
+  --relax-gold-light: #d4a85e;
+  --relax-cream: #f7f3ea;
+  --relax-white: #fffdf8;
+  --relax-charcoal: #333333;
+  --relax-slate: #5c6470;
+  --relax-line: #d7d0c2;
+  --relax-error: #b23a3a;
+
+  --primary: var(--relax-gold);
+  --primary-foreground: var(--relax-navy);
+  --sidebar-primary: var(--relax-gold);
+  --sidebar-primary-foreground: var(--relax-navy);
+  --chart-1: var(--relax-gold);
+  --chart-2: var(--relax-navy);
+  --chart-3: var(--relax-gold-light);
+  --chart-4: var(--relax-slate);
+  --chart-5: var(--relax-line);
+  --radius: 1.1rem;
+  --background: var(--relax-cream);
+  --foreground: var(--relax-charcoal);
+  --card: var(--relax-white);
+  --card-foreground: var(--relax-charcoal);
+  --popover: var(--relax-white);
+  --popover-foreground: var(--relax-charcoal);
+  --secondary: #ece5d6;
+  --secondary-foreground: var(--relax-navy);
+  --muted: #eee8dd;
+  --muted-foreground: var(--relax-slate);
+  --accent: #e8dbc4;
+  --accent-foreground: var(--relax-navy);
+  --destructive: var(--relax-error);
+  --destructive-foreground: var(--relax-white);
+  --border: var(--relax-line);
+  --input: var(--relax-line);
+  --ring: var(--relax-gold);
+  --sidebar: var(--relax-white);
+  --sidebar-foreground: var(--relax-charcoal);
+  --sidebar-accent: #ece5d6;
+  --sidebar-accent-foreground: var(--relax-navy);
+  --sidebar-border: var(--relax-line);
+  --sidebar-ring: var(--relax-gold);
+}
+
+.dark {
+  --background: var(--relax-navy);
+  --foreground: var(--relax-cream);
+  --card: #17324f;
+  --card-foreground: var(--relax-cream);
+  --popover: #17324f;
+  --popover-foreground: var(--relax-cream);
+  --secondary: #1f3d5e;
+  --secondary-foreground: var(--relax-cream);
+  --muted: #244564;
+  --muted-foreground: #d7d0c2;
+  --accent: rgba(199, 148, 64, 0.18);
+  --accent-foreground: var(--relax-gold-light);
+  --border: rgba(247, 243, 234, 0.18);
+  --input: rgba(247, 243, 234, 0.22);
+  --ring: var(--relax-gold-light);
+  --sidebar: #17324f;
+  --sidebar-foreground: var(--relax-cream);
+  --sidebar-accent: #244564;
+  --sidebar-accent-foreground: var(--relax-cream);
+  --sidebar-border: rgba(247, 243, 234, 0.18);
+  --sidebar-ring: var(--relax-gold-light);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+    background:
+      radial-gradient(circle at 10% 8%, rgba(199, 148, 64, 0.18), transparent 26rem),
+      radial-gradient(circle at 90% 4%, rgba(16, 36, 58, 0.12), transparent 28rem),
+      var(--background);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-family: "Bodoni Moda", Georgia, serif;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .luxury-card {
+    @apply border border-border/80 bg-card/80 shadow-[0_24px_80px_rgba(16,36,58,0.12)] backdrop-blur-xl transition-all duration-300;
+  }
+
+  .luxury-card:hover {
+    @apply -translate-y-1 shadow-[0_28px_90px_rgba(16,36,58,0.18)];
+  }
+
+  .gold-rule {
+    background: linear-gradient(90deg, transparent, var(--relax-gold), transparent);
+    height: 1px;
+  }
+
+  .navy-panel {
+    color: var(--relax-cream);
+    background:
+      radial-gradient(circle at 15% 15%, rgba(212, 168, 94, 0.2), transparent 24rem),
+      linear-gradient(135deg, var(--relax-navy), var(--relax-navy-2));
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em];
+    border-color: rgba(199, 148, 64, 0.45);
+    color: #6f4a12;
+    background: rgba(255, 253, 248, 0.9);
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
