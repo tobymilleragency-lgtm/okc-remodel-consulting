@@ -173,7 +173,7 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T22:12:18.003Z",
+      "completedAt": "2026-05-24T22:12:35.388Z",
       "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /service-area/oklahoma-city",
       "gates": [
         {
