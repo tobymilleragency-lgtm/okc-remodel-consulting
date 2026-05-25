@@ -106,11 +106,11 @@ const textEs: Record<string, string> = {
   "Access, pets, parking, or special notes are listed": "Se anotaron acceso, mascotas, estacionamiento o notas especiales",
   "Budget range or finish level can be discussed": "Se puede hablar del rango de presupuesto o nivel de acabado",
   "Before / after comparison": "Comparación antes / después",
-  "From scattered remodel ideas to a clear project conversation.": "De ideas dispersas a una conversación clara sobre el proyecto.",
+  "From scattered remodel ideas to a clear project plan.": "De ideas dispersas a una conversación clara sobre el proyecto.",
   "Before": "Antes",
-  "Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.": "Ideas sueltas, fotos faltantes, prioridades poco claras, tiempo indefinido y dificultad para explicar la remodelación.",
+  "Loose ideas, missing photos, unclear priorities, unknown timeline, and no clear remodel scope.": "Ideas sueltas, fotos faltantes, prioridades poco claras, tiempo indefinido y dificultad para explicar la remodelación.",
   "After": "Después",
-  "Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.": "Área, fotos, tiempos, ciudad y tipo de proyecto reunidos para que Brothers Remodeling OKC responda con un siguiente paso útil.",
+  "Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can review the work and respond with the next step.": "Área, fotos, tiempos, ciudad y tipo de proyecto reunidos para que Brothers Remodeling OKC responda con un siguiente paso útil.",
   "Ready for a remodel?": "¿Listo para remodelar?",
   "Request quote": "Solicitar cotización",
   "Fast quote request": "Solicitud rápida de cotización",
@@ -144,7 +144,7 @@ const textEs: Record<string, string> = {
   "HTML Sitemap": "Mapa del sitio HTML",
   "XML Sitemap: /sitemap.xml": "Mapa del sitio XML: /sitemap.xml",
   "Oklahoma City, Oklahoma": "Oklahoma City, Oklahoma",
-  "Built for real remodeling quote conversations.": "Hecho para conversaciones reales de cotización de remodelación.",
+  "Built for real remodeling quote requests.": "Hecho para conversaciones reales de cotización de remodelación.",
   "No fake reviews, no online payments, no auth.": "Sin reseñas falsas, sin pagos en línea, sin inicio de sesión.",
   "Kitchen, bathroom, interior, exterior, flooring, paint, and repair remodeling in OKC.": "Remodelación de cocinas, baños, interiores, exteriores, pisos, pintura y reparaciones en OKC.",
   "Brothers Remodeling OKC gives homeowners one place to start for the most common remodeling needs around the home.": "Brothers Remodeling OKC ofrece a propietarios un solo lugar para empezar con las necesidades más comunes de remodelación del hogar.",
@@ -155,16 +155,16 @@ const textEs: Record<string, string> = {
   "Material and finish expectations": "Expectativas de materiales y acabado",
   "Schedule, access, and cleanup notes": "Notas de horario, acceso y limpieza",
   "Related drywall, paint, trim, floor, door, or exterior tie-ins": "Detalles relacionados de drywall, pintura, molduras, piso, puertas o exterior",
-  "Photos, measurements, and address-area details for the quote conversation": "Fotos, medidas y zona de la dirección para la conversación de cotización",
+  "Photos, measurements, and address-area details for the remodeling estimate": "Fotos, medidas y zona de la dirección para la conversación de cotización",
   "A clear remodeling process before work begins.": "Un proceso claro de remodelación antes de comenzar el trabajo.",
-  "The goal is direct communication, realistic scope conversations, and a next step homeowners understand.": "La meta es comunicación directa, conversaciones realistas sobre el alcance y un siguiente paso que el propietario entienda.",
+  "The goal is direct communication, realistic scope review, and a next step homeowners understand.": "La meta es comunicación directa, conversaciones realistas sobre el alcance y un siguiente paso que el propietario entienda.",
   "How the project path works": "Cómo funciona la ruta del proyecto",
   "Send details": "Enviar detalles",
   "Share the room, city, photos, timeline, and what needs to change.": "Comparta la habitación, ciudad, fotos, tiempos y lo que necesita cambiar.",
   "Check scope": "Revisar alcance",
   "Brothers Remodeling OKC reviews the work type, access, materials, and schedule.": "Brothers Remodeling OKC revisa el tipo de trabajo, acceso, materiales y agenda.",
   "Confirm next step": "Confirmar siguiente paso",
-  "If the job is a good match, the team follows up with the visit, quote step, or project conversation.": "Si el trabajo es adecuado, el equipo da seguimiento con visita, cotización o conversación del proyecto.",
+  "If the job is a good match, the team follows up with the visit, quote step, or project details.": "Si el trabajo es adecuado, el equipo da seguimiento con visita, cotización o conversación del proyecto.",
   "Build with updates": "Trabajar con actualizaciones",
   "Work proceeds with clear communication in English or Spanish.": "El trabajo avanza con comunicación clara en inglés o español.",
   "Brothers Remodeling OKC is a local remodeling contractor for real home upgrades.": "Brothers Remodeling OKC es un contratista local de remodelación para mejoras reales del hogar.",
@@ -172,7 +172,7 @@ const textEs: Record<string, string> = {
   "Built for homeowners who want direct remodeling help.": "Hecho para propietarios que quieren ayuda directa con su remodelación.",
   "Brothers Remodeling OKC presents services, service area, process, and quote options plainly, without invented credentials or exaggerated claims.": "Brothers Remodeling OKC presenta servicios, área de servicio, proceso y opciones de cotización con claridad, sin credenciales inventadas ni promesas exageradas.",
   "Bilingual communication": "Comunicación bilingüe",
-  "English and Spanish project conversations are welcome.": "Las conversaciones del proyecto en inglés o español son bienvenidas.",
+  "English and Spanish remodeling communication is available.": "Las conversaciones del proyecto en inglés o español son bienvenidas.",
   "Wide service range": "Amplio rango de servicios",
   "Multiple rooms and repair scopes can be discussed in one place.": "Varias habitaciones y alcances de reparación se pueden hablar en un solo lugar.",
   "OKC area focus": "Enfoque en el área de OKC",
@@ -232,9 +232,9 @@ const textEs: Record<string, string> = {
   "Contact Brothers Remodeling OKC": "Contactar a Brothers Remodeling OKC",
   "Tell us what you want remodeled.": "Díganos qué quiere remodelar.",
   "Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them.": "Envíe detalles del proyecto en inglés o español. Incluya la habitación, zona de la dirección, tiempo y fotos si las tiene.",
-  "Request a quote conversation.": "Solicitar una conversación de cotización.",
-  "Use the form or email project photos to start a real quote conversation.": "Use el formulario o envíe fotos por email para iniciar una conversación real de cotización.",
-  "Call (405) 209-9487 or use the form to start a real quote conversation.": "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización.",
+  "Request a remodeling quote.": "Solicitar una conversación de cotización.",
+  "Use the form or email project photos to start a remodeling quote request.": "Use el formulario o envíe fotos por email para iniciar una conversación real de cotización.",
+  "Call (405) 209-9487 or use the form to request a remodeling quote.": "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización.",
   "Page not found": "Página no encontrada",
   "The page you requested is not available.": "La página solicitada no está disponible.",
   "Back home": "Volver al inicio",
@@ -561,11 +561,11 @@ function serviceSeoSections(service: typeof serviceDetails[number]) {
     },
     {
       heading: `What ${lower} can include`,
-      body: `For ${lower}, common work can include ${service.focus}. The exact scope depends on the home, the existing materials, the desired finish, and the way the project connects to nearby rooms or exterior areas. A kitchen update may involve cabinets, counters, backsplash, flooring, wall repair, lighting changes, appliance fit, and trim. A bathroom update may involve waterproofing, tile, fixtures, ventilation, drywall, vanity placement, flooring, and paint. Flooring work can affect baseboards, transitions, door clearance, and subfloor preparation. Exterior work can involve siding, trim, caulk, paint, doors, windows, deck details, fencing, and weather-facing repairs. Brothers Remodeling OKC keeps those connected details in one conversation so homeowners are not left coordinating unrelated pieces of the same finished result.`
+      body: `For ${lower}, common work can include ${service.focus}. The exact scope depends on the home, the existing materials, the desired finish, and the way the project connects to nearby rooms or exterior areas. A kitchen update may involve cabinets, counters, backsplash, flooring, wall repair, lighting changes, appliance fit, and trim. A bathroom update may involve waterproofing, tile, fixtures, ventilation, drywall, vanity placement, flooring, and paint. Flooring work can affect baseboards, transitions, door clearance, and subfloor preparation. Exterior work can involve siding, trim, caulk, paint, doors, windows, deck details, fencing, and weather-facing repairs. Brothers Remodeling OKC keeps those connected details together so homeowners are not left coordinating unrelated pieces of the same finished result.`
     },
     {
       heading: `How to prepare before requesting a quote`,
-      body: `The most useful first request includes the address area, the project type, photos if available, the room or exterior area involved, the approximate timeline, and a plain-English description of what is not working now. Homeowners do not need perfect measurements to start, but photos help show the existing condition, corners, transitions, access, ceiling height, flooring changes, water damage, trim gaps, patched areas, and other details that can affect the work. If the project involves ${service.rooms}, it helps to mention whether the home is occupied, whether pets are present, whether parking is limited, whether there are access restrictions, and whether the work needs to be phased around family schedules or tenants. Clear information helps Brothers Remodeling OKC decide whether the next step should be a call, a visit, a quote path, or a more detailed materials conversation.`
+      body: `The most useful first request includes the address area, the project type, photos if available, the room or exterior area involved, the approximate timeline, and a plain-English description of what is not working now. Homeowners do not need perfect measurements to start, but photos help show the existing condition, corners, transitions, access, ceiling height, flooring changes, water damage, trim gaps, patched areas, and other details that can affect the work. If the project involves ${service.rooms}, it helps to mention whether the home is occupied, whether pets are present, whether parking is limited, whether there are access restrictions, and whether the work needs to be phased around family schedules or tenants. Clear information helps Brothers Remodeling OKC decide whether the next step should be a call, a visit, a quote path, or a more detailed materials review.`
     },
     {
       heading: `A structured project path instead of guesswork`,
@@ -577,11 +577,11 @@ function serviceSeoSections(service: typeof serviceDetails[number]) {
     },
     {
       heading: `Materials, finishes, and realistic expectations`,
-      body: `${service.title} can look very different depending on the finish level. A practical rental refresh, a mid-range family-home update, and a more detailed finish upgrade are not the same project even if they involve the same room. Materials affect cost, schedule, installation method, durability, and cleanup. Homeowners should think about whether they want simple and durable, clean and modern, or more detailed and custom. They should also consider how the project connects with nearby finishes. New flooring may make old trim look rough. New paint may expose wall texture problems. A new door may reveal framing that is not square. New exterior paint may show where caulking, trim, or siding repair is needed first. A clear conversation about finish expectations helps prevent a quote from being based on assumptions.`
+      body: `${service.title} can look very different depending on the finish level. A practical rental refresh, a mid-range family-home update, and a more detailed finish upgrade are not the same project even if they involve the same room. Materials affect cost, schedule, installation method, durability, and cleanup. Homeowners should think about whether they want simple and durable, clean and modern, or more detailed and custom. They should also consider how the project connects with nearby finishes. New flooring may make old trim look rough. New paint may expose wall texture problems. A new door may reveal framing that is not square. New exterior paint may show where caulking, trim, or siding repair is needed first. A clear review of finish expectations helps prevent a quote from being based on assumptions.`
     },
     {
       heading: `Communication in English or Spanish`,
-      body: `Brothers Remodeling OKC welcomes English and Spanish project conversations. That matters because remodeling details need to be understood clearly. Homeowners should feel comfortable explaining what they want changed, asking what the next step is, and sharing concerns about timing, access, budget range, or finish level. A strong remodeling conversation is not only about selling the job. It is about understanding the home, the homeowner's priorities, and the practical steps required to complete the work. If project photos are available, sending them with the city or neighborhood, the room, and the desired result helps the team respond with better questions and a more useful next step.`
+      body: `Brothers Remodeling OKC offers English and Spanish remodeling communication. That matters because remodeling details need to be understood clearly. Homeowners should feel comfortable explaining what they want changed, asking what the next step is, and sharing concerns about timing, access, budget range, or finish level. A strong remodeling estimate is not only about selling the job. It is about understanding the home, the homeowner's priorities, and the practical steps required to complete the work. If project photos are available, sending them with the city or neighborhood, the room, and the desired result helps the team respond with better questions and a more useful next step.`
     },
     {
       heading: `Service area for this remodeling work`,
@@ -589,7 +589,7 @@ function serviceSeoSections(service: typeof serviceDetails[number]) {
     },
     {
       heading: `What this page is meant to do`,
-      body: `This page is written to help homeowners understand ${lower} before reaching out. It avoids fake review counts, invented awards, fake license numbers, and generic claims that do not help with a real project. Instead, it explains how Brothers Remodeling OKC thinks about the service, what details are useful, how the work may connect to other parts of the home, and how to begin the quote conversation. If you are comparing remodeling options, use this page as a checklist. Describe the room or exterior area. Gather photos. Note the city or neighborhood. Think about the desired finish level. Mention your timeline. Then send enough detail for a useful response.`
+      body: `This page is written to help homeowners understand ${lower} before reaching out. It avoids fake review counts, invented awards, fake license numbers, and generic claims that do not help with a real project. Instead, it explains how Brothers Remodeling OKC thinks about the service, what details are useful, how the work may connect to other parts of the home, and how to begin the quote request. If you are comparing remodeling options, use this page as a checklist. Describe the room or exterior area. Gather photos. Note the city or neighborhood. Think about the desired finish level. Mention your timeline. Then send enough detail for a useful response.`
     },
     {
       heading: `Requesting a ${lower} quote`,
@@ -609,7 +609,7 @@ function ServiceDetailLayout({ service, sections }: { service: typeof serviceDet
     <section className="section serviceOverview">
       <div className="serviceIntroPanel">
         <p className="eyebrow dark"><Hammer size={18} /> Service overview</p>
-        <h2>Clear scope first. Better remodeling conversation next.</h2>
+        <h2>Clear project details first. Better remodeling quote next.</h2>
         <p className="sectionLead">{service.short} Brothers Remodeling OKC keeps the service page organized around what homeowners actually need to decide: scope, condition, prep, finish level, communication, and next steps.</p>
         <div className="serviceQuickStats">
           <span><b>1</b> Describe the room</span>
@@ -725,7 +725,7 @@ function Footer() {
       <section><h3>Services</h3>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</section>
       <section><h3>Service areas</h3>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</section>
     </div>
-    <div className="footerBottom"><span>© {new Date().getFullYear()} Brothers Remodeling OKC LLC. No fake reviews, no online payments, no auth.</span><span>Built for real remodeling quote conversations.</span></div>
+    <div className="footerBottom"><span>© {new Date().getFullYear()} Brothers Remodeling OKC LLC. No fake reviews, no online payments, no auth.</span><span>Built for real remodeling quote requests.</span></div>
   </footer>;
 }
 function ContactModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -843,7 +843,7 @@ function LeadOpsVisual() {
 }
 function LeadFlowLineSection() { const steps = ["Project details received", "Details reviewed", "Visit or quote step confirmed", "Remodel work scheduled"]; return <section className="section flow"><p className="eyebrow dark"><ClipboardCheck size={18} /> Project flow</p><h2>A cleaner path from first message to remodel plan.</h2><div className="flowLine">{steps.map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div></section>; }
 function LeadLeakAudit() { const { language } = useLanguage(); const items = ["Room or area is clearly described", "Photos are ready to send", "Timeline expectations are known", "Access, pets, parking, or special notes are listed", "Budget range or finish level can be discussed"]; const [checked, setChecked] = React.useState<string[]>([]); return <section className="section audit"><p className="eyebrow dark"><Shield size={18} /> Interactive checklist</p><h2>Before you request a quote, collect the details that prevent back-and-forth.</h2><div className="auditGrid">{items.map((item) => <label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={(e) => setChecked((current) => e.target.checked ? [...current, item] : current.filter((x) => x !== item))} /><span>{item}</span></label>)}</div><p className="sectionLead">{language === "es" ? `Progreso de la lista: ${checked.length} de ${items.length} listo(s).` : `Checklist progress: ${checked.length} of ${items.length} ready.`}</p></section>; }
-function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
+function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project plan.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no clear remodel scope.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can review the work and respond with the next step.</p></article></div></section>; }
 function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><QuoteButton className="stickyQuote" source="sticky-request-quote">Request quote</QuoteButton></aside>; }
 
 function citySeoSections(city: City, copy?: { paragraphs: string[] }) {
@@ -898,8 +898,8 @@ function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: str
     <section className="section serviceOverview cityServiceHero">
       <div className="serviceIntroPanel cityIntroPanel">
         <p className="eyebrow dark"><MapPin size={18} /> {city.name} service-area page</p>
-        <h2>{city.name} remodeling information broken into clear decision blocks.</h2>
-        <p className="sectionLead">This city page is structured like a Brothers service page: quick facts first, project categories next, quote-prep details, then short local guidance cards. No wall of paragraphs.</p>
+        <h2>{city.name} remodeling services organized around real home projects.</h2>
+        <p className="sectionLead">This page is organized for homeowners who want remodel details without digging through a long block of text: city, project type, photos, timing, access, and the next step for the work.</p>
         <div className="serviceQuickStats cityQuickStats"><span><b>1</b> City fit</span><span><b>2</b> Scope fit</span><span><b>3</b> Quote path</span></div>
       </div>
       <LeadForm city={city.name} />
@@ -909,44 +909,44 @@ function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: str
       <div>
         <p className="eyebrow dark"><CheckCircle2 size={18} /> Quick local scan</p>
         <h2>What matters before Brothers reviews a {city.name} remodel request.</h2>
-        <p className="sectionLead">Use these cards to understand whether the request has enough detail for a practical conversation.</p>
+        <p className="sectionLead">Use these sections to gather the job details Brothers needs before looking at the remodel scope.</p>
       </div>
       <div className="serviceDetailCards cityServiceCards cityFactCards">
         <article><MapPin size={18} /><span><b>Local area</b><small>{city.nearby}</small></span></article>
         <article><Hammer size={18} /><span><b>Common work</b><small>{city.note}</small></span></article>
         <article><ClipboardCheck size={18} /><span><b>Best first step</b><small>Share photos, timing, access, and the exact room or exterior area.</small></span></article>
-        <article><Languages size={18} /><span><b>Communication</b><small>English and Spanish project conversations are welcome.</small></span></article>
+        <article><Languages size={18} /><span><b>Communication</b><small>English and Spanish remodeling communication is available.</small></span></article>
       </div>
     </section>
 
     <section className="section serviceGuideGrid cityProjectTypes">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><Hammer size={18} /> Remodel categories in {city.name}</p><h2>Scan the type of work before reading any local guidance.</h2></div>
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><Hammer size={18} /> Remodel categories in {city.name}</p><h2>Choose the part of the home that needs work, then send the details that match that remodel.</h2></div>
       <div className="guideCards cityWorkCards">{projectTypes.map((item) => { const Icon = item.icon; return <article className="guideCard" key={item.title}><Icon size={28} /><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
     </section>
 
     <section className="section serviceTwoColumn cityTwoColumn">
       <article className="servicePanel">
-        <h2>Where this service area commonly shows up.</h2>
+        <h2>Where Brothers commonly reviews remodeling work.</h2>
         <div className="chips compactChips">{localDetails.map((item) => <span key={item}>{item}</span>)}</div>
       </article>
       <article className="servicePanel accentPanel">
-        <h2>How to make the request easy to review.</h2>
+        <h2>What helps Brothers review the job.</h2>
         <ul>{citySteps.map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul>
       </article>
     </section>
 
     <section className="section serviceStructured cityServiceDirectory">
-      <div><p className="eyebrow dark"><Wrench size={18} /> Services for {city.name}</p><h2>Jump to the matching remodeling service page.</h2><p className="sectionLead">These service pages explain the project type in the same scannable format.</p></div>
+      <div><p className="eyebrow dark"><Wrench size={18} /> Services for {city.name}</p><h2>Find the remodeling service that matches the work.</h2><p className="sectionLead">Use these service sections to see what can be included in each type of home remodel.</p></div>
       <div className="serviceDetailCards cityServiceCards">{featuredServices.map((service) => { const Icon = service.icon; return <AppLink href={`/services/${service.slug}`} key={service.slug}><Icon size={18} /><span>{service.title}</span></AppLink>; })}</div>
     </section>
 
     <section className="section serviceGuideGrid cityGuideGrid">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Quote-prep guide</p><h2>Short cards for a cleaner {city.name} remodel conversation.</h2></div>
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Quote-prep guide</p><h2>What to send for a {city.name} remodeling estimate.</h2></div>
       <div className="guideCards">{quickGuide.map((card) => <article className="guideCard" key={card.title}><b>{card.label}</b><h3>{card.title}</h3><p>{card.text}</p></article>)}</div>
     </section>
 
     <section className="section cityLocalNotes">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><MapPin size={18} /> Local guidance</p><h2>{city.name} remodeling notes, split into readable cards.</h2></div>
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><MapPin size={18} /> Local guidance</p><h2>{city.name} remodeling notes for real home projects.</h2></div>
       <div className="cityLocalNoteGrid">{cityCopyCards.map((section) => <article className="servicePanel" key={section.heading}><b>{section.label}</b><h3>{section.heading}</h3><p>{section.body}</p></article>)}</div>
     </section>
 
@@ -969,38 +969,38 @@ function ServiceDetailPage({ params }: { params: { serviceSlug: string } }) {
   const sections = serviceSeoSections(service);
   return <Shell><PageHero icon={<Icon size={18} />} eyebrow="Remodeling service" title={`${service.title} in Oklahoma City`} text={service.short} /><ServiceDetailLayout service={service} sections={sections} /></Shell>;
 }
-function ProcessPage() { return <Shell><PageHero icon={<Shield size={18} />} eyebrow="Process" title="A clear remodeling process before work begins." text="The goal is direct communication, realistic scope conversations, and a next step homeowners understand." /><section className="split"><div><h2>How the project path works</h2><ul>{[["Send details", "Share the room, city, photos, timeline, and what needs to change."], ["Check scope", "Brothers Remodeling OKC reviews the work type, access, materials, and schedule."], ["Confirm next step", "If the job is a good match, the team follows up with the visit, quote step, or project conversation."], ["Build with updates", "Work proceeds with clear communication in English or Spanish."]].map(([title, text]) => <li key={title}><CheckCircle2 /><span><b>{title}</b><br />{text}</span></li>)}</ul></div><LeadOpsVisual /></section><LeadLeakAudit /></Shell>; }
-function AboutPage() { return <Shell><PageHero icon={<Building2 size={18} />} eyebrow="About" title="Brothers Remodeling OKC is a local remodeling contractor for real home upgrades." text="The company focuses on practical, good-looking remodel work across kitchens, bathrooms, flooring, interiors, exterior improvements, garages, repairs, and whole-home updates." /><section className="section"><h2>Built for homeowners who want direct remodeling help.</h2><p className="sectionLead">Brothers Remodeling OKC presents services, service area, process, and quote options plainly, without invented credentials or exaggerated claims.</p><div className="cards"><article className="card"><Languages /><h3>Bilingual communication</h3><p>English and Spanish project conversations are welcome.</p></article><article className="card"><Wrench /><h3>Wide service range</h3><p>Multiple rooms and repair scopes can be discussed in one place.</p></article><article className="card"><MapPin /><h3>OKC area focus</h3><p>Oklahoma City and nearby communities are the primary service area.</p></article></div></section></Shell>; }
-function GalleryPage() { return <Shell><PageHero icon={<Paintbrush size={18} />} eyebrow="Gallery" title="Real Brothers Remodeling OKC project photos and remodeling categories." text="These photos were carried over from the original Brothers Remodeling OKC gallery so homeowners can reference actual project images when they request a quote." /><section className="section portfolio"><p className="eyebrow dark"><Paintbrush size={18} /> Original site gallery</p><h2>Project photos from the existing Brothers Remodeling OKC portfolio.</h2><p className="sectionLead">The gallery below preserves the real photo assets from the prior Brothers Remodeling OKC website instead of using generic placeholder cards.</p><div className="photoGalleryGrid">{portfolioPhotos.map((photo, index) => <article className="photoCard" key={photo.src}><img src={photo.src} alt={photo.alt} loading={index < 3 ? "eager" : "lazy"} /><div><h3>{photo.title}</h3><p>{photo.note}</p></div></article>)}</div></section><section className="section portfolio"><p className="eyebrow dark"><Hammer size={18} /> Remodeling categories</p><div className="portfolioGrid"><article className="portfolioCard featured"><div className="portfolioNoImage exteriorProof"><Paintbrush size={46} /><span>Exterior updates, curb appeal, repairs, doors, windows, paint, and outdoor spaces</span></div><div><h3>Exterior and curb appeal work</h3><p>Exterior updates, repair scopes, paint, fencing, doors, windows, and curb-appeal improvements for homes that need a sharper first impression.</p></div></article><article className="portfolioCard featured"><div className="portfolioNoImage interiorProof"><Hammer size={46} /><span>Interior finishes, drywall, trim, flooring, paint, kitchens, and baths</span></div><div><h3>Interior remodel finish work</h3><p>Interior improvements, finish details, and room-by-room upgrades that make the home cleaner, more useful, and easier to live in.</p></div></article><article className="portfolioCard"><div className="portfolioNoImage"><Hammer size={46} /><span>Kitchen • bath • flooring • paint • exterior • garage • repairs</span></div><div><h3>Remodeling categories</h3><p>Kitchen, bath, flooring, paint, exterior, garage, and repair scopes are organized so homeowners can start a clear quote conversation.</p></div></article></div></section><BeforeAfterComparison /></Shell>; }
+function ProcessPage() { return <Shell><PageHero icon={<Shield size={18} />} eyebrow="Process" title="A clear remodeling process before work begins." text="The goal is direct communication, realistic scope review, and a next step homeowners understand." /><section className="split"><div><h2>How the project path works</h2><ul>{[["Send details", "Share the room, city, photos, timeline, and what needs to change."], ["Check scope", "Brothers Remodeling OKC reviews the work type, access, materials, and schedule."], ["Confirm next step", "If the job is a good match, the team follows up with the visit, quote step, or project details."], ["Build with updates", "Work proceeds with clear communication in English or Spanish."]].map(([title, text]) => <li key={title}><CheckCircle2 /><span><b>{title}</b><br />{text}</span></li>)}</ul></div><LeadOpsVisual /></section><LeadLeakAudit /></Shell>; }
+function AboutPage() { return <Shell><PageHero icon={<Building2 size={18} />} eyebrow="About" title="Brothers Remodeling OKC is a local remodeling contractor for real home upgrades." text="The company focuses on practical, good-looking remodel work across kitchens, bathrooms, flooring, interiors, exterior improvements, garages, repairs, and whole-home updates." /><section className="section"><h2>Built for homeowners who want direct remodeling help.</h2><p className="sectionLead">Brothers Remodeling OKC presents services, service area, process, and quote options plainly, without invented credentials or exaggerated claims.</p><div className="cards"><article className="card"><Languages /><h3>Bilingual communication</h3><p>English and Spanish remodeling communication is available.</p></article><article className="card"><Wrench /><h3>Wide service range</h3><p>Multiple rooms and repair scopes can be discussed in one place.</p></article><article className="card"><MapPin /><h3>OKC area focus</h3><p>Oklahoma City and nearby communities are the primary service area.</p></article></div></section></Shell>; }
+function GalleryPage() { return <Shell><PageHero icon={<Paintbrush size={18} />} eyebrow="Gallery" title="Real Brothers Remodeling OKC project photos and remodeling categories." text="These photos were carried over from the original Brothers Remodeling OKC gallery so homeowners can reference actual project images when they request a quote." /><section className="section portfolio"><p className="eyebrow dark"><Paintbrush size={18} /> Original site gallery</p><h2>Project photos from the existing Brothers Remodeling OKC portfolio.</h2><p className="sectionLead">The gallery below preserves the real photo assets from the prior Brothers Remodeling OKC website instead of using generic placeholder cards.</p><div className="photoGalleryGrid">{portfolioPhotos.map((photo, index) => <article className="photoCard" key={photo.src}><img src={photo.src} alt={photo.alt} loading={index < 3 ? "eager" : "lazy"} /><div><h3>{photo.title}</h3><p>{photo.note}</p></div></article>)}</div></section><section className="section portfolio"><p className="eyebrow dark"><Hammer size={18} /> Remodeling categories</p><div className="portfolioGrid"><article className="portfolioCard featured"><div className="portfolioNoImage exteriorProof"><Paintbrush size={46} /><span>Exterior updates, curb appeal, repairs, doors, windows, paint, and outdoor spaces</span></div><div><h3>Exterior and curb appeal work</h3><p>Exterior updates, repair scopes, paint, fencing, doors, windows, and curb-appeal improvements for homes that need a sharper first impression.</p></div></article><article className="portfolioCard featured"><div className="portfolioNoImage interiorProof"><Hammer size={46} /><span>Interior finishes, drywall, trim, flooring, paint, kitchens, and baths</span></div><div><h3>Interior remodel finish work</h3><p>Interior improvements, finish details, and room-by-room upgrades that make the home cleaner, more useful, and easier to live in.</p></div></article><article className="portfolioCard"><div className="portfolioNoImage"><Hammer size={46} /><span>Kitchen • bath • flooring • paint • exterior • garage • repairs</span></div><div><h3>Remodeling categories</h3><p>Kitchen, bath, flooring, paint, exterior, garage, and repair work are organized so homeowners can request the right remodeling help.</p></div></article></div></section><BeforeAfterComparison /></Shell>; }
 function ServiceAreaSection() { return <section className="section area"><p className="eyebrow dark"><MapPin size={18} /> Service area</p><h2>Remodeling help centered on Oklahoma City.</h2><p className="sectionLead">Brothers Remodeling OKC focuses on the core Oklahoma City metro first: kitchens, bathrooms, flooring, paint, exterior repairs, garages, additions, and whole-home updates. Nearby communities are reviewed by project fit, access, timing, and work type.</p><div className="areaGrid"><div><h3>Primary OKC-area communities</h3><p>Use the city links below to describe where the home is and what kind of remodeling help you need.</p><div className="chips">{cities.map((z) => <AppLink key={z.slug} href={`/service-area/${z.slug}`}>{z.name}</AppLink>)}</div></div><div className="serviceMapVisual" role="img" aria-label="Oklahoma City centered service area visual"><b>OKC</b><span>Core metro first. Nearby communities reviewed by project type, access, schedule, and fit.</span></div></div></section>; }
 function ServiceAreaLandingLayout() {
   const serviceAreaSteps = ["Choose the city closest to the home", "Share the room, exterior area, or repair scope", "Send photos and timing notes", "Review the right quote or visit step"];
   const fitCards = [
-    { icon: MapPin, title: "Location", text: "Start with the city, cross streets, or nearest OKC-area neighborhood so drive time, access, and service-area fit are clear." },
-    { icon: Hammer, title: "Scope", text: "Kitchen, bath, flooring, exterior, garage, addition, outdoor living, and repair scopes are easier to review when the exact area is named." },
-    { icon: ClipboardCheck, title: "Details", text: "Photos, timing, access notes, pets, parking, and finish expectations help turn a vague request into a useful next step." },
-    { icon: Languages, title: "Communication", text: "English and Spanish project conversations are welcome across the OKC-area communities listed on this page." },
+    { icon: MapPin, title: "Location", text: "Start with the city, cross streets, or nearest OKC-area neighborhood so Brothers can review drive time, access, and job fit." },
+    { icon: Hammer, title: "Scope", text: "Kitchen, bath, flooring, exterior, garage, addition, outdoor living, and repair jobs are easier to review when the exact work area is named." },
+    { icon: ClipboardCheck, title: "Details", text: "Photos, timing, access notes, pets, parking, and finish expectations help Brothers understand the remodel before scheduling the next step." },
+    { icon: Languages, title: "Communication", text: "English and Spanish remodeling communication is available across the OKC-area communities listed on this page." },
   ];
   return <>
     <section className="section serviceOverview serviceAreaOverview">
       <div className="serviceIntroPanel">
         <p className="eyebrow dark"><MapPin size={18} /> Service-area overview</p>
-        <h2>Pick the area first. Then make the remodel request easy to understand.</h2>
-        <p className="sectionLead">This page is organized like the service pages so homeowners can scan quickly: where Brothers Remodeling OKC works, which cities have detail pages, what information helps, and how the quote conversation starts.</p>
+        <h2>Pick the city first. Then send the remodeling details Brothers needs.</h2>
+        <p className="sectionLead">This page helps homeowners quickly see where Brothers Remodeling OKC works, which nearby cities have detail pages, what remodeling information to send, and how to request an estimate.</p>
         <div className="serviceQuickStats"><span><b>1</b> Pick city</span><span><b>2</b> Share scope</span><span><b>3</b> Send photos</span></div>
       </div>
       <LeadForm />
     </section>
     <section className="section serviceStructured serviceAreaCityDirectory">
-      <div><p className="eyebrow dark"><CheckCircle2 size={18} /> City pages</p><h2>Service-area pages that read like service pages.</h2><p className="sectionLead">Each city page breaks the remodel conversation into short panels, cards, helpful details, and scannable guidance instead of one hard-to-read block.</p></div>
+      <div><p className="eyebrow dark"><CheckCircle2 size={18} /> City pages</p><h2>City pages organized around real remodeling work.</h2><p className="sectionLead">Each city page organizes the home remodeling details into project sections, service options, photo-prep notes, and local job guidance instead of one hard-to-read block.</p></div>
       <div className="serviceDetailCards cityDirectoryCards">{cities.map((city) => <AppLink href={`/service-area/${city.slug}`} key={city.slug}><MapPin size={18} /><span><b>{city.name}</b><small>{city.note}</small></span></AppLink>)}</div>
     </section>
     <section className="section serviceTwoColumn serviceAreaFitColumns">
       <article className="servicePanel"><h2>Core service-area focus.</h2><div className="chips compactChips"><span>Oklahoma City</span><span>Nearby OKC metro</span><span>Projects reviewed by fit</span><span>English / Español</span></div></article>
-      <article className="servicePanel accentPanel"><h2>How service-area fit is reviewed.</h2><ul>{serviceAreaSteps.map((step) => <li key={step}><CheckCircle2 size={18} /> {step}</li>)}</ul></article>
+      <article className="servicePanel accentPanel"><h2>How Brothers reviews service-area fit.</h2><ul>{serviceAreaSteps.map((step) => <li key={step}><CheckCircle2 size={18} /> {step}</li>)}</ul></article>
     </section>
     <section className="section serviceGuideGrid serviceAreaGuideGrid">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Service-area guide</p><h2>Short, scannable details before you request a remodeling quote.</h2></div>
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Service-area guide</p><h2>Helpful details to send before requesting a remodeling estimate.</h2></div>
       <div className="guideCards">{fitCards.map((card, index) => { const Icon = card.icon; return <article className="guideCard" key={card.title}><b>{String(index + 1).padStart(2, "0")}</b><Icon size={26} /><h3>{card.title}</h3><p>{card.text}</p></article>; })}</div>
     </section>
   </>;
@@ -1014,7 +1014,7 @@ function CityPage({ params }: { params: { citySlug: string } }) {
 }
 function SitemapPage() { return <Shell><PageHero icon={<MapPin size={18} />} eyebrow="Sitemap" title="All Brothers Remodeling OKC website pages." text="Use this page to find every main route, service page, service-area page, contact option, and sitemap file." /><section className="section sitemapPage"><div><h2>Main pages</h2><AppLink href="/">Home</AppLink><AppLink href="/services">Services</AppLink><AppLink href="/process">Process</AppLink><AppLink href="/about">About</AppLink><AppLink href="/gallery">Gallery</AppLink><AppLink href="/service-area">Service Area</AppLink><AppLink href="/contact">Contact</AppLink><AppLink href="/sitemap">HTML Sitemap</AppLink><span>XML Sitemap: /sitemap.xml</span></div><div><h2>Service pages</h2>{serviceDetails.map((service) => <AppLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</AppLink>)}</div><div><h2>Service-area pages</h2>{cities.map((city) => <AppLink key={city.slug} href={`/service-area/${city.slug}`}>{city.name}</AppLink>)}</div></section></Shell>; }
 
-function ContactPage() { const { language } = useLanguage(); return <Shell><PageHero icon={<Mail size={18} />} eyebrow="Contact Brothers Remodeling OKC" title="Tell us what you want remodeled." text="Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them." /><section className="contact"><div><h2>Request a quote conversation.</h2><p>Brothers Remodeling OKC handles kitchens, bathrooms, flooring, interior renovations, exterior remodeling, garages, repairs, commercial spaces, and whole-home updates in the Oklahoma City area.</p><p className="contactLine"><Mail /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p className="contactLine"><Phone /> <a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "contact-page" })}>{phoneDisplay}</a></p><p className="contactLine"><Phone /> {language === "es" ? "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización." : "Call (405) 209-9487 or use the form to start a real quote conversation."}</p></div><LeadForm /></section></Shell>; }
+function ContactPage() { const { language } = useLanguage(); return <Shell><PageHero icon={<Mail size={18} />} eyebrow="Contact Brothers Remodeling OKC" title="Tell us what you want remodeled." text="Send project details in English or Spanish. Include the room, address area, timeline, and photos if you have them." /><section className="contact"><div><h2>Request a remodeling quote.</h2><p>Brothers Remodeling OKC handles kitchens, bathrooms, flooring, interior renovations, exterior remodeling, garages, repairs, commercial spaces, and whole-home updates in the Oklahoma City area.</p><p className="contactLine"><Mail /> <a data-jeriko-track="email_click" href={`mailto:${email}`}>{email}</a></p><p className="contactLine"><Phone /> <a data-jeriko-track="phone_click" href={phoneHref} onClick={() => track("phone_click", { location: "contact-page" })}>{phoneDisplay}</a></p><p className="contactLine"><Phone /> {language === "es" ? "Llame al (405) 209-9487 o use el formulario para iniciar una conversación real de cotización." : "Call (405) 209-9487 or use the form to request a remodeling quote."}</p></div><LeadForm /></section></Shell>; }
 function PageHero({ eyebrow, title, text, icon }: { eyebrow: string; title: string; text: string; icon: React.ReactNode }) { return <section className="pageHero"><p className="eyebrow">{icon} {eyebrow}</p><h1>{title}</h1><p>{text}</p></section>; }
 function NotFound() { const [, navigate] = useLocation(); return <Shell><section className="pageHero"><h1>Page not found</h1><p>The page you requested is not available.</p><button className="cta" onClick={() => navigate("/")}>Back home</button></section></Shell>; }
 

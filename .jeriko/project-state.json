@@ -173,8 +173,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-25T15:12:29.579Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --skip-install --route /service-area/oklahoma-city --browser-route /service-area/oklahoma-city",
+      "completedAt": "2026-05-25T15:18:06.957Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route /service-area/oklahoma-city --browser-route /service-area/oklahoma-city",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -257,6 +257,12 @@
           "ok": true
         },
         {
+          "name": "install",
+          "ok": true,
+          "command": "pnpm install --frozen-lockfile --ignore-scripts",
+          "status": 0
+        },
+        {
           "name": "check",
           "ok": true,
           "command": "pnpm run check",
@@ -298,9 +304,9 @@
         }
       ],
       "sourceFingerprint": {
-        "sha256": "11c99f2e057b51c0ea3b0e6c5aaaaa27b65fa183292d540e723321cc8aca5b8a",
+        "sha256": "913e7839ddd74bb8c513ba34756d9a31db64ffd2572dda1797a081cb2baf3b1d",
         "fileCount": 122,
-        "bytes": 4907191
+        "bytes": 4907187
       }
     }
   }
