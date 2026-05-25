@@ -173,7 +173,7 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-24T22:12:35.388Z",
+      "completedAt": "2026-05-25T00:15:47.504Z",
       "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /service-area/oklahoma-city",
       "gates": [
         {
@@ -182,6 +182,10 @@
         },
         {
           "name": "scaffold_residue_scan",
+          "ok": true
+        },
+        {
+          "name": "public_builder_meta_scan",
           "ok": true
         },
         {
@@ -295,14 +299,14 @@
         {
           "name": "browser_smoke",
           "ok": true,
-          "command": "pnpm run preview --port 4173 --strictPort",
+          "command": "PORT=4173 pnpm run start",
           "status": 0
         }
       ],
       "sourceFingerprint": {
-        "sha256": "794e4b6efec91b4cedc279621524d7324f42fc29be97ee096c66956520bb1418",
+        "sha256": "62cb3f041c9083d563cff9715c5da985fd32aefb47c7765858efe031d22a5e07",
         "fileCount": 122,
-        "bytes": 4885194
+        "bytes": 4892852
       }
     }
   }

@@ -253,25 +253,202 @@ const placeholderEs: Record<string, string> = {
   "Morning, afternoon, evening, or specific days": "Mañana, tarde, noche o días específicos",
 };
 
+const phraseEs: Array<[RegExp, string]> = [
+  [/\bhomeowners\b/gi, "propietarios"],
+  [/\bhomeowner's\b/gi, "del propietario"],
+  [/\bhomeowner\b/gi, "propietario"],
+  [/\bBrothers Remodeling OKC handles\b/gi, "Brothers Remodeling OKC realiza"],
+  [/\bBrothers Remodeling OKC helps\b/gi, "Brothers Remodeling OKC ayuda a"],
+  [/\bBrothers Remodeling OKC welcomes\b/gi, "Brothers Remodeling OKC recibe"],
+  [/\bBrothers Remodeling OKC reviews\b/gi, "Brothers Remodeling OKC revisa"],
+  [/\bBrothers Remodeling OKC keeps\b/gi, "Brothers Remodeling OKC mantiene"],
+  [/\bBrothers Remodeling OKC focuses on\b/gi, "Brothers Remodeling OKC se enfoca en"],
+  [/\bOklahoma City homes\b/gi, "casas de Oklahoma City"],
+  [/\bOklahoma City and nearby communities\b/gi, "Oklahoma City y comunidades cercanas"],
+  [/\bOklahoma City metro\b/gi, "metro de Oklahoma City"],
+  [/\bnearby communities\b/gi, "comunidades cercanas"],
+  [/\bservice area\b/gi, "área de servicio"],
+  [/\bservice-area\b/gi, "área de servicio"],
+  [/\bservice page\b/gi, "página del servicio"],
+  [/\bservice pages\b/gi, "páginas de servicio"],
+  [/\bservice\b/gi, "servicio"],
+  [/\bKitchen Remodeling\b/g, "Remodelación de cocinas"],
+  [/\bBathroom Remodeling\b/g, "Remodelación de baños"],
+  [/\bInterior Renovations\b/g, "Renovaciones interiores"],
+  [/\bFlooring Installation\b/g, "Instalación de pisos"],
+  [/\bExterior Remodeling\b/g, "Remodelación exterior"],
+  [/\bAdditions, Garages & Conversions\b/g, "Ampliaciones, garajes y conversiones"],
+  [/\bOutdoor Living Spaces\b/g, "Espacios exteriores"],
+  [/\bRepair & Maintenance\b/g, "Reparaciones y mantenimiento"],
+  [/\bkitchen remodeling\b/gi, "remodelación de cocinas"],
+  [/\bbathroom remodeling\b/gi, "remodelación de baños"],
+  [/\binterior renovations\b/gi, "renovaciones interiores"],
+  [/\bflooring installation\b/gi, "instalación de pisos"],
+  [/\bexterior remodeling\b/gi, "remodelación exterior"],
+  [/\badditions, garages, and conversions\b/gi, "ampliaciones, garajes y conversiones"],
+  [/\boutdoor living spaces\b/gi, "espacios exteriores"],
+  [/\brepair and maintenance\b/gi, "reparaciones y mantenimiento"],
+  [/\bremodeling\b/gi, "remodelación"],
+  [/\bremodel\b/gi, "remodelación"],
+  [/\brenovations\b/gi, "renovaciones"],
+  [/\brepairs\b/gi, "reparaciones"],
+  [/\brepair\b/gi, "reparación"],
+  [/\bmaintenance\b/gi, "mantenimiento"],
+  [/\bkitchens\b/gi, "cocinas"],
+  [/\bkitchen\b/gi, "cocina"],
+  [/\bbathrooms\b/gi, "baños"],
+  [/\bbathroom\b/gi, "baño"],
+  [/\bflooring\b/gi, "pisos"],
+  [/\bfloors\b/gi, "pisos"],
+  [/\bfloor\b/gi, "piso"],
+  [/\bpaint\b/gi, "pintura"],
+  [/\bpainting\b/gi, "pintura"],
+  [/\bdrywall\b/gi, "drywall"],
+  [/\btrim\b/gi, "molduras"],
+  [/\bdoors\b/gi, "puertas"],
+  [/\bdoor\b/gi, "puerta"],
+  [/\bwindows\b/gi, "ventanas"],
+  [/\bwindow\b/gi, "ventana"],
+  [/\bgarages\b/gi, "garajes"],
+  [/\bgarage\b/gi, "garaje"],
+  [/\badditions\b/gi, "ampliaciones"],
+  [/\baddition\b/gi, "ampliación"],
+  [/\bdecks\b/gi, "decks"],
+  [/\bdeck\b/gi, "deck"],
+  [/\bfences\b/gi, "cercas"],
+  [/\bfencing\b/gi, "cercas"],
+  [/\bpatios\b/gi, "patios"],
+  [/\bwhole-home\b/gi, "casa completa"],
+  [/\bwhole home\b/gi, "casa completa"],
+  [/\bfull-home\b/gi, "casa completa"],
+  [/\binteriors\b/gi, "interiores"],
+  [/\binterior\b/gi, "interior"],
+  [/\bexterior\b/gi, "exterior"],
+  [/\bpractical\b/gi, "práctico"],
+  [/\bclear\b/gi, "claro"],
+  [/\bconversation\b/gi, "conversación"],
+  [/\bconversations\b/gi, "conversaciones"],
+  [/\bquote\b/gi, "cotización"],
+  [/\brequest\b/gi, "solicitud"],
+  [/\brequests\b/gi, "solicitudes"],
+  [/\bproject\b/gi, "proyecto"],
+  [/\bprojects\b/gi, "proyectos"],
+  [/\bwork\b/gi, "trabajo"],
+  [/\bfinish\b/gi, "acabado"],
+  [/\bfinishes\b/gi, "acabados"],
+  [/\bmaterials\b/gi, "materiales"],
+  [/\bmaterial\b/gi, "material"],
+  [/\bschedule\b/gi, "agenda"],
+  [/\btimeline\b/gi, "tiempo"],
+  [/\btiming\b/gi, "tiempo"],
+  [/\bphotos\b/gi, "fotos"],
+  [/\bphoto\b/gi, "foto"],
+  [/\baddress area\b/gi, "zona de la dirección"],
+  [/\broom\b/gi, "habitación"],
+  [/\brooms\b/gi, "habitaciones"],
+  [/\bcity\b/gi, "ciudad"],
+  [/\bneighborhood\b/gi, "vecindario"],
+  [/\bnearby\b/gi, "cercano"],
+  [/\baccess\b/gi, "acceso"],
+  [/\bcleanup\b/gi, "limpieza"],
+  [/\bcommunication\b/gi, "comunicación"],
+  [/\bEnglish and Spanish\b/g, "inglés y español"],
+  [/\bSpanish\b/g, "español"],
+  [/\bEnglish\b/g, "inglés"],
+  [/\bwhat needs to change\b/gi, "qué necesita cambiar"],
+  [/\bwhat needs changed\b/gi, "qué necesita cambiar"],
+  [/\bwhat needs remodeled\b/gi, "qué necesita remodelarse"],
+  [/\bwhat is already there\b/gi, "lo que ya existe"],
+  [/\bwhat is broken or outdated\b/gi, "qué está dañado o anticuado"],
+  [/\bwhat must be repaired, replaced, or updated\b/gi, "qué debe repararse, reemplazarse o actualizarse"],
+  [/\bwhat kind of\b/gi, "qué tipo de"],
+  [/\bstart with\b/gi, "empiece con"],
+  [/\bfirst step\b/gi, "primer paso"],
+  [/\bnext step\b/gi, "siguiente paso"],
+  [/\bnext steps\b/gi, "siguientes pasos"],
+  [/\bfit\b/gi, "ajuste"],
+  [/\bscope\b/gi, "alcance"],
+  [/\bcondition\b/gi, "condición"],
+  [/\bexisting\b/gi, "existente"],
+  [/\bupdated\b/gi, "actualizado"],
+  [/\bupdate\b/gi, "actualizar"],
+  [/\bupdates\b/gi, "mejoras"],
+  [/\bupgrades\b/gi, "mejoras"],
+  [/\bimprovements\b/gi, "mejoras"],
+  [/\bbetter\b/gi, "mejor"],
+  [/\buseful\b/gi, "útil"],
+  [/\bhelpful\b/gi, "útil"],
+  [/\bdetails\b/gi, "detalles"],
+  [/\bdetail\b/gi, "detalle"],
+  [/\bcommon\b/gi, "común"],
+  [/\binclude\b/gi, "incluya"],
+  [/\bincludes\b/gi, "incluye"],
+  [/\bincluding\b/gi, "incluyendo"],
+  [/\bcan include\b/gi, "puede incluir"],
+  [/\bcan be discussed\b/gi, "se puede hablar"],
+  [/\bcan still be reviewed\b/gi, "todavía puede revisarse"],
+  [/\bshould\b/gi, "debe"],
+  [/\bneed\b/gi, "necesitan"],
+  [/\bneeds\b/gi, "necesita"],
+  [/\bwant\b/gi, "quieren"],
+  [/\bready\b/gi, "listo"],
+  [/\bavailable\b/gi, "disponible"],
+  [/\bif available\b/gi, "si están disponibles"],
+  [/\bcentered on\b/gi, "centrado en"],
+  [/\baround\b/gi, "alrededor de"],
+  [/\bfor\b/gi, "para"],
+  [/\bwith\b/gi, "con"],
+  [/\bwithout\b/gi, "sin"],
+  [/\band\b/gi, "y"],
+  [/\bor\b/gi, "o"],
+  [/\bthe\b/gi, "el"],
+  [/\ba\b/gi, "un"],
+];
+
+function translateServicePhrase(value: string): string {
+  return Object.entries(serviceNameEs).reduce((text, [en, es]) => text.replace(new RegExp(en.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), es), value);
+}
+
+function translateLongEnglish(value: string): string {
+  let translated = translateServicePhrase(value);
+  for (const [pattern, replacement] of phraseEs) translated = translated.replace(pattern, replacement);
+  return translated
+    .replace(/\s+([.,:;!?])/g, "$1")
+    .replace(/\bOKC\b/g, "OKC")
+    .replace(/\bOklahoma ciudad\b/gi, "Oklahoma City")
+    .replace(/\bEmail\b/g, "Email")
+    .replace(/\bLVP\b/g, "LVP")
+    .replace(/\bBrothers Remodelación OKC\b/g, "Brothers Remodeling OKC")
+    .replace(/\bBrothers Remodeling OKC LLC\b/g, "Brothers Remodeling OKC LLC");
+}
+
 function translateTextValue(value: string): string {
   const compact = value.replace(/\s+/g, " ").trim();
   if (!compact) return value;
   let translated = textEs[compact];
   if (!translated) {
-    const serviceMatch = compact.match(/^Read the (.+) service page$/);
-    if (serviceMatch) translated = `Leer la página de ${serviceNameEs[serviceMatch[1]] || serviceMatch[1]}`;
+    const serviceMatch = compact.match(/^Read the (.+) service page$/i);
+    if (serviceMatch) translated = `Leer la página de ${serviceNameEs[serviceMatch[1]] || translateServicePhrase(serviceMatch[1])}`;
   }
   if (!translated) {
-    const progress = compact.match(/^Checklist progress: (\d+) of (\d+) ready\.$/);
+    const serviceMatch = compact.match(/^Read the (.+) service page$/i) || compact.match(/^Read the (.+) servicio page$/i);
+    if (serviceMatch) translated = `Leer la página de ${serviceNameEs[serviceMatch[1]] || translateServicePhrase(serviceMatch[1])}`;
+  }
+  if (!translated) {
+    const progress = compact.match(/^Checklist progress: (\d+) of (\d+) ready\.$/i);
     if (progress) translated = `Progreso de la lista: ${progress[1]} de ${progress[2]} listo(s).`;
   }
   if (!translated) {
-    const serviceTitle = Object.entries(serviceNameEs).find(([, es]) => compact.includes(es))?.[0];
-    const commonMatch = compact.match(/^Common (.+) details$/);
-    if (commonMatch) translated = `Detalles comunes de ${serviceNameEs[commonMatch[1]] || commonMatch[1]}`;
-    const knowMatch = compact.match(/^What homeowners should know before starting (.+)\.$/);
-    if (knowMatch) translated = `Lo que los propietarios deben saber antes de comenzar ${serviceNameEs[serviceTitle || knowMatch[1]] || knowMatch[1]}.`;
+    const commonMatch = compact.match(/^Common (.+) details$/i);
+    if (commonMatch) translated = `Detalles comunes de ${serviceNameEs[commonMatch[1]] || translateServicePhrase(commonMatch[1])}`;
+    const knowMatch = compact.match(/^What homeowners should know before starting (.+)\.$/i);
+    if (knowMatch) translated = `Lo que los propietarios deben saber antes de comenzar ${serviceNameEs[knowMatch[1]] || translateServicePhrase(knowMatch[1])}.`;
   }
+  if (!translated) {
+    const cityHero = compact.match(/^(.+) remodeling services for practical home upgrades\.$/i);
+    if (cityHero) translated = `Servicios de remodelación en ${cityHero[1]} para mejoras prácticas del hogar.`;
+  }
+  if (!translated && /[A-Za-z]/.test(compact)) translated = translateLongEnglish(compact);
   if (!translated) return value;
   return value.replace(compact, translated);
 }
@@ -302,7 +479,7 @@ function applyNativeTranslations(language: Language) {
         child.textContent = language === "es" ? translateTextValue(original) : original;
       }
     });
-    ["placeholder", "aria-label", "title"].forEach((attribute) => {
+    ["placeholder", "aria-label", "title", "alt"].forEach((attribute) => {
       const current = element.getAttribute(attribute);
       if (!current) return;
       const key = `data-i18n-${attribute}`;
