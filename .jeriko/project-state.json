@@ -173,8 +173,8 @@
     "lastSuccessfulVerification": {
       "ok": true,
       "profile": "web-static",
-      "completedAt": "2026-05-25T15:12:00.193Z",
-      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --profile web-static --port 4173 --route / --browser-route /service-area/oklahoma-city",
+      "completedAt": "2026-05-25T15:12:29.579Z",
+      "command": "jeriko verify-app /home/toby/.jeriko/projects/brothers-remodeling-okc --skip-install --route /service-area/oklahoma-city --browser-route /service-area/oklahoma-city",
       "gates": [
         {
           "name": "placeholder_scan",
@@ -255,12 +255,6 @@
         {
           "name": "app_spec_verifier",
           "ok": true
-        },
-        {
-          "name": "install",
-          "ok": true,
-          "command": "pnpm install --frozen-lockfile --ignore-scripts",
-          "status": 0
         },
         {
           "name": "check",
