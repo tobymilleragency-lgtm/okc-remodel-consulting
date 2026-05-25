@@ -846,29 +846,54 @@ function LeadLeakAudit() { const { language } = useLanguage(); const items = ["R
 function BeforeAfterComparison() { return <section className="section compare"><p className="eyebrow dark"><Paintbrush size={18} /> Before / after comparison</p><h2>From scattered remodel ideas to a clear project conversation.</h2><div className="compareGrid"><article><b>Before</b><p>Loose ideas, missing photos, unclear priorities, unknown timeline, and no easy way to explain the remodel.</p></article><article><b>After</b><p>Room, photos, timeline, city, and project type collected so Brothers Remodeling OKC can respond with a useful next step.</p></article></div></section>; }
 function StickyAuditRail() { return <aside className="stickyRail"><span>Ready for a remodel?</span><QuoteButton className="stickyQuote" source="sticky-request-quote">Request quote</QuoteButton></aside>; }
 
+function citySeoSections(city: City, copy?: { paragraphs: string[] }) {
+  const paragraphs = copy?.paragraphs || [];
+  const fallback = [
+    `Brothers Remodeling OKC helps homeowners in ${city.name} start with the details that matter most: project type, photos, address area, timing, finish level, and whether the work is a good fit for the schedule.`,
+    `Common remodeling requests around ${city.name} include kitchens, bathrooms, flooring, drywall, paint, exterior repairs, garages, additions, outdoor living work, and whole-home updates.`,
+    `A useful first request includes the city, the room or exterior area, photos when available, the desired timing, and a plain explanation of what needs to change.`,
+    `Brothers Remodeling OKC reviews ${city.name} projects by location, access, schedule, work type, materials, and whether the request is a good fit for the team.`,
+  ];
+  const guide = paragraphs.length ? paragraphs : fallback;
+  const headings = [
+    `Remodeling in ${city.name}: start with the real condition of the home`,
+    `Common remodeling requests around ${city.name}`,
+    `Why ${city.name} home details matter before a quote`,
+    `Kitchen remodeling and connected finish work in ${city.name}`,
+    `Bathroom remodeling and repair details in ${city.name}`,
+    `Interior updates, flooring, paint, and trim in ${city.name}`,
+    `Exterior remodeling and practical repairs in ${city.name}`,
+    `How to prepare a ${city.name} quote request`,
+    `Service-area fit for ${city.name} remodeling projects`,
+    `What this ${city.name} page is meant to help homeowners do`,
+  ];
+  return guide.map((body, index) => ({ heading: headings[index] || `${city.name} remodeling guidance`, body }));
+}
+
 function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: string[] } }) {
-  const featuredServices = serviceDetails.slice(0, 6);
-  const guide = copy?.paragraphs || [];
-  const primaryGuide = guide.slice(0, 4);
-  const supportGuide = guide.slice(4, 7);
+  const featuredServices = serviceDetails.slice(0, 8);
+  const sections = citySeoSections(city, copy);
+  const keySections = sections.slice(0, 6);
+  const supportSections = sections.slice(6);
+  const localDetails = [city.name, city.nearby, "Oklahoma City metro", "Nearby projects reviewed by fit", "Kitchen, bath, flooring, exterior, garage, and repair scopes"];
   return <>
     <section className="section cityOverview serviceOverview">
       <div className="serviceIntroPanel cityIntroPanel">
-        <p className="eyebrow dark"><MapPin size={18} /> City overview</p>
-        <h2>Remodeling help organized around location, scope, and fit.</h2>
-        <p className="sectionLead">Brothers Remodeling OKC helps homeowners in {city.name} start with the details that matter most: project type, photos, address area, timing, finish level, and whether the work is a good fit for the schedule.</p>
+        <p className="eyebrow dark"><MapPin size={18} /> Service-area overview</p>
+        <h2>Clear location and scope first. Better remodeling conversation next.</h2>
+        <p className="sectionLead">Brothers Remodeling OKC keeps each service-area page organized like a service page: location, scope, project condition, helpful first details, and a clear quote path for homeowners in {city.name}.</p>
         <div className="serviceQuickStats cityQuickStats">
           <span><b>1</b> Confirm city</span>
-          <span><b>2</b> Share scope</span>
-          <span><b>3</b> Plan next step</span>
+          <span><b>2</b> Send photos</span>
+          <span><b>3</b> Review scope</span>
         </div>
       </div>
       <LeadForm city={city.name} />
     </section>
     <section className="section cityStructured serviceStructured">
       <div>
-        <p className="eyebrow dark"><Hammer size={18} /> Common work in {city.name}</p>
-        <h2>Services grouped so homeowners can scan quickly.</h2>
+        <p className="eyebrow dark"><CheckCircle2 size={18} /> What Brothers can review in {city.name}</p>
+        <h2>{city.name} remodeling details without the wall of text.</h2>
       </div>
       <div className="serviceDetailCards cityServiceCards">
         {featuredServices.map((service) => { const Icon = service.icon; return <AppLink href={`/services/${service.slug}`} key={service.slug}><Icon size={18} /><span>{service.title}</span></AppLink>; })}
@@ -876,9 +901,8 @@ function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: str
     </section>
     <section className="section serviceTwoColumn cityTwoColumn">
       <article className="servicePanel">
-        <h2>Local focus areas.</h2>
-        <p>{city.nearby}</p>
-        <div className="chips compactChips"><span>{city.name}</span><span>Oklahoma City metro</span><span>Nearby projects reviewed by fit</span></div>
+        <h2>Where this service area commonly shows up.</h2>
+        <div className="chips compactChips">{localDetails.map((item) => <span key={item}>{item}</span>)}</div>
       </article>
       <article className="servicePanel accentPanel">
         <h2>Helpful first details.</h2>
@@ -886,16 +910,14 @@ function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: str
       </article>
     </section>
     <section className="section serviceGuideGrid cityGuideGrid">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> City guide</p><h2>Short, scannable remodeling guidance for {city.name}.</h2></div>
-      <div className="guideCards">{primaryGuide.map((paragraph, index) => <article className="guideCard" key={`${city.slug}-guide-${index}`}><b>{String(index + 1).padStart(2, "0")}</b><h3>{index === 0 ? `Remodeling in ${city.name}` : index === 1 ? "Scope and photos" : index === 2 ? "Schedule and access" : "Finish expectations"}</h3><p>{paragraph}</p></article>)}</div>
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Service-area guide</p><h2>Short, scannable guidance for {city.name} remodeling.</h2></div>
+      <div className="guideCards">{keySections.map((section, index) => <article className="guideCard" key={section.heading}><b>{String(index + 1).padStart(2, "0")}</b><h3>{section.heading}</h3><p>{section.body}</p></article>)}</div>
     </section>
-    {supportGuide.length > 0 && <section className="section serviceSupportGrid citySupportGrid">
-      {supportGuide.map((paragraph, index) => <article className="servicePanel" key={`${city.slug}-support-${index}`}><h3>{index === 0 ? "Quote conversation" : index === 1 ? "Connected remodeling details" : "Local project fit"}</h3><p>{paragraph}</p></article>)}
+    {supportSections.length > 0 && <section className="section serviceSupportGrid citySupportGrid">
+      {supportSections.map((section) => <article className="servicePanel" key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></article>)}
     </section>}
-    <section className="section">
-      <h2>How Brothers reviews a {city.name} remodel request.</h2>
-      <div className="flowLine">{["Confirm city and project type", "Review photos and scope", "Discuss quote or visit step", "Plan schedule and work details"].map((step, index) => <div key={step} className="flowStep"><b>{index + 1}</b><span>{step}</span></div>)}</div>
-    </section>
+    <LeadLeakAudit />
+    <BeforeAfterComparison />
   </>;
 }
 
