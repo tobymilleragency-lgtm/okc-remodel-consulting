@@ -873,46 +873,83 @@ function citySeoSections(city: City, copy?: { paragraphs: string[] }) {
 function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: string[] } }) {
   const featuredServices = serviceDetails.slice(0, 8);
   const sections = citySeoSections(city, copy);
-  const keySections = sections.slice(0, 6);
+  const localDetails = [city.name, city.nearby, "Oklahoma City metro", "Nearby projects reviewed by fit"];
+  const citySteps = [
+    "Confirm the city, neighborhood, or nearest cross streets",
+    "Choose the closest service category and describe the room or exterior area",
+    "Send photos, timing notes, access details, pets, parking, and finish expectations",
+    "Review whether the request fits the schedule and the right quote or visit step",
+  ];
+  const projectTypes = [
+    { title: "Kitchen and connected rooms", text: `${city.name} kitchen requests often connect to flooring, paint, drywall, trim, lighting prep, doors, and nearby living spaces.`, icon: Hammer },
+    { title: "Bathrooms and wet areas", text: `Bathroom remodels in ${city.name} are easier to review when photos show the vanity, tub or shower, flooring, walls, ventilation, and repair concerns.`, icon: Wrench },
+    { title: "Interior finishes", text: `Flooring, drywall, paint, doors, trim, and room-by-room updates can be grouped so the whole ${city.name} project is easier to plan.`, icon: Paintbrush },
+    { title: "Exterior and repair work", text: `Exterior repairs, curb appeal updates, garage work, doors, windows, fencing, and outdoor spaces are reviewed by condition, access, and fit.`, icon: Building2 },
+  ];
+  const quickGuide = [
+    { label: "01", title: "Start with location", text: `Tell Brothers Remodeling OKC where the home is in ${city.name}, nearby cross streets, and whether access, parking, HOA rules, or pets may affect the work.` },
+    { label: "02", title: "Name the scope", text: `Pick the closest remodel type: kitchen, bathroom, flooring, interior, exterior, garage, addition, outdoor living, repair, or whole-home update.` },
+    { label: "03", title: "Show the condition", text: "Photos from several angles help show damage, layout, finishes, doors, trim, flooring transitions, exterior conditions, and hidden concerns to discuss." },
+    { label: "04", title: "Explain the goal", text: "Share what should change, what needs to stay, preferred finish level, rough timeline, and whether the project is urgent or flexible." },
+  ];
+  const cityCopyCards = sections.slice(0, 6).map((section, index) => ({ ...section, label: String(index + 1).padStart(2, "0") }));
   const supportSections = sections.slice(6);
-  const localDetails = [city.name, city.nearby, "Oklahoma City metro", "Nearby projects reviewed by fit", "Kitchen, bath, flooring, exterior, garage, and repair scopes"];
   return <>
-    <section className="section cityOverview serviceOverview">
+    <section className="section serviceOverview cityServiceHero">
       <div className="serviceIntroPanel cityIntroPanel">
-        <p className="eyebrow dark"><MapPin size={18} /> Service-area overview</p>
-        <h2>Clear location and scope first. Better remodeling conversation next.</h2>
-        <p className="sectionLead">Brothers Remodeling OKC keeps each service-area page organized like a service page: location, scope, project condition, helpful first details, and a clear quote path for homeowners in {city.name}.</p>
-        <div className="serviceQuickStats cityQuickStats">
-          <span><b>1</b> Confirm city</span>
-          <span><b>2</b> Send photos</span>
-          <span><b>3</b> Review scope</span>
-        </div>
+        <p className="eyebrow dark"><MapPin size={18} /> {city.name} service-area page</p>
+        <h2>{city.name} remodeling information broken into clear decision blocks.</h2>
+        <p className="sectionLead">This city page is structured like a Brothers service page: quick facts first, project categories next, quote-prep details, then short local guidance cards. No wall of paragraphs.</p>
+        <div className="serviceQuickStats cityQuickStats"><span><b>1</b> City fit</span><span><b>2</b> Scope fit</span><span><b>3</b> Quote path</span></div>
       </div>
       <LeadForm city={city.name} />
     </section>
-    <section className="section cityStructured serviceStructured">
+
+    <section className="section serviceStructured cityDecisionGrid">
       <div>
-        <p className="eyebrow dark"><CheckCircle2 size={18} /> What Brothers can review in {city.name}</p>
-        <h2>{city.name} remodeling details without the wall of text.</h2>
+        <p className="eyebrow dark"><CheckCircle2 size={18} /> Quick local scan</p>
+        <h2>What matters before Brothers reviews a {city.name} remodel request.</h2>
+        <p className="sectionLead">Use these cards to understand whether the request has enough detail for a practical conversation.</p>
       </div>
-      <div className="serviceDetailCards cityServiceCards">
-        {featuredServices.map((service) => { const Icon = service.icon; return <AppLink href={`/services/${service.slug}`} key={service.slug}><Icon size={18} /><span>{service.title}</span></AppLink>; })}
+      <div className="serviceDetailCards cityServiceCards cityFactCards">
+        <article><MapPin size={18} /><span><b>Local area</b><small>{city.nearby}</small></span></article>
+        <article><Hammer size={18} /><span><b>Common work</b><small>{city.note}</small></span></article>
+        <article><ClipboardCheck size={18} /><span><b>Best first step</b><small>Share photos, timing, access, and the exact room or exterior area.</small></span></article>
+        <article><Languages size={18} /><span><b>Communication</b><small>English and Spanish project conversations are welcome.</small></span></article>
       </div>
     </section>
+
+    <section className="section serviceGuideGrid cityProjectTypes">
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><Hammer size={18} /> Remodel categories in {city.name}</p><h2>Scan the type of work before reading any local guidance.</h2></div>
+      <div className="guideCards cityWorkCards">{projectTypes.map((item) => { const Icon = item.icon; return <article className="guideCard" key={item.title}><Icon size={28} /><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
+    </section>
+
     <section className="section serviceTwoColumn cityTwoColumn">
       <article className="servicePanel">
         <h2>Where this service area commonly shows up.</h2>
         <div className="chips compactChips">{localDetails.map((item) => <span key={item}>{item}</span>)}</div>
       </article>
       <article className="servicePanel accentPanel">
-        <h2>Helpful first details.</h2>
-        <ul>{["Address area or nearest cross streets", "Project type and room or exterior area", "Photos from several angles", "Timing, access, pets, or parking notes", "Finish level or budget range if known"].map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul>
+        <h2>How to make the request easy to review.</h2>
+        <ul>{citySteps.map((item) => <li key={item}><CheckCircle2 size={18} /> {item}</li>)}</ul>
       </article>
     </section>
-    <section className="section serviceGuideGrid cityGuideGrid">
-      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Service-area guide</p><h2>Short, scannable guidance for {city.name} remodeling.</h2></div>
-      <div className="guideCards">{keySections.map((section, index) => <article className="guideCard" key={section.heading}><b>{String(index + 1).padStart(2, "0")}</b><h3>{section.heading}</h3><p>{section.body}</p></article>)}</div>
+
+    <section className="section serviceStructured cityServiceDirectory">
+      <div><p className="eyebrow dark"><Wrench size={18} /> Services for {city.name}</p><h2>Jump to the matching remodeling service page.</h2><p className="sectionLead">These service pages explain the project type in the same scannable format.</p></div>
+      <div className="serviceDetailCards cityServiceCards">{featuredServices.map((service) => { const Icon = service.icon; return <AppLink href={`/services/${service.slug}`} key={service.slug}><Icon size={18} /><span>{service.title}</span></AppLink>; })}</div>
     </section>
+
+    <section className="section serviceGuideGrid cityGuideGrid">
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><ClipboardCheck size={18} /> Quote-prep guide</p><h2>Short cards for a cleaner {city.name} remodel conversation.</h2></div>
+      <div className="guideCards">{quickGuide.map((card) => <article className="guideCard" key={card.title}><b>{card.label}</b><h3>{card.title}</h3><p>{card.text}</p></article>)}</div>
+    </section>
+
+    <section className="section cityLocalNotes">
+      <div className="serviceGuideIntro"><p className="eyebrow dark"><MapPin size={18} /> Local guidance</p><h2>{city.name} remodeling notes, split into readable cards.</h2></div>
+      <div className="cityLocalNoteGrid">{cityCopyCards.map((section) => <article className="servicePanel" key={section.heading}><b>{section.label}</b><h3>{section.heading}</h3><p>{section.body}</p></article>)}</div>
+    </section>
+
     {supportSections.length > 0 && <section className="section serviceSupportGrid citySupportGrid">
       {supportSections.map((section) => <article className="servicePanel" key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></article>)}
     </section>}
@@ -920,7 +957,6 @@ function CityDetailLayout({ city, copy }: { city: City; copy?: { paragraphs: str
     <BeforeAfterComparison />
   </>;
 }
-
 
 function HomePage() { return <Shell><section className="hero"><div className="glow one" /><div className="glow two" /><div className="heroGrid"><div><p className="eyebrow"><Sparkles size={18} /> Full-service remodeling • English / Español</p><h1>Remodel your OKC home without the runaround.</h1><p className="sub">Brothers Remodeling OKC LLC helps homeowners update kitchens, bathrooms, floors, walls, exterior spaces, garages, and full homes across Oklahoma City and nearby areas.</p><div className="actions"><QuoteButton className="cta" source="hero-request-quote">Request Remodeling Quote <ArrowRight size={20} /></QuoteButton><a data-jeriko-track="email_click" onClick={() => track("email_click", { location: "hero" })} className="ghost" href={`mailto:${email}`}>Email Project Photos</a></div><div className="stats"><span><b>Full</b> service</span><span><b>Bi</b> lingual</span><span><b>OKC</b> focused</span></div></div><div className="showcase"><img src="/images/current-site/hero.jpg" alt="Brothers Remodeling OKC exterior remodeling work" /><div className="glass">Kitchens • Bathrooms • Floors • Paint • Exterior • Repairs</div></div></div></section><section className="section commandWrap"><LeadOpsVisual /></section><section className="strip">{["English and Spanish communication available", "Kitchens, baths, floors, paint, exterior work, garages, and repairs", "Focused on Oklahoma City and nearby communities", "Direct remodeling communication"].map((x) => <span key={x}><CheckCircle2 size={18} />{x}</span>)}</section><section className="section"><p className="eyebrow dark"><Hammer size={18} /> Remodeling services</p><h2>One remodeling company for almost every part of the home.</h2><ServicesGrid /></section><LeadFlowLineSection /><LeadLeakAudit /><BeforeAfterComparison /><ServiceAreaSection /></Shell>; }
 function ServicesPage() { return <Shell><PageHero icon={<Hammer size={18} />} eyebrow="Remodeling services" title="Kitchen, bathroom, interior, exterior, flooring, paint, and repair remodeling in OKC." text="Brothers Remodeling OKC gives homeowners one place to start for the most common remodeling needs around the home." /><section className="section"><div className="cards">{serviceDetails.map((service) => { const Icon = service.icon; return <AppLink className="card serviceLinkCard" href={`/services/${service.slug}`} key={service.slug}><Icon size={34} /><h3>{service.title}</h3><p>{service.short}</p><span>Read the {service.title.toLowerCase()} service page <ArrowRight size={16} /></span></AppLink>; })}</div></section><LeadFlowLineSection /></Shell>; }
